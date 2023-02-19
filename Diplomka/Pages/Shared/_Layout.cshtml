@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тут может находиться ваша реклама</title>
+    @await Html.PartialAsync("_ValidationLayoutStyles")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    @await Html.PartialAsync("_FooterPartial")
+
+    @await Html.PartialAsync("_ValidationLayoutScripts")
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

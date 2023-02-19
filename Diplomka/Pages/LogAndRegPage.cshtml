@@ -1,0 +1,107 @@
+﻿@page "{namePage}"
+@model Diplomka.Pages.LogAndRegPageModel
+@{
+    Layout = "/Pages/Shared/_LayoutForLogAndRegPage.cshtml";
+}
+
+@section Styles {
+    <link href="~/css/LogAndRegPageStyles.css" rel="stylesheet" type="text/css"/>
+}
+
+<div class="mainWrapper row">
+    <div class="col-4 left-side__wrapper d-flex justify-content-center align-items-center">
+        <div class="form-container__wrapper">
+            <div class="form-container w-100">
+                @if(Model.TypePage == "Log") {
+                    <div class="d-flex justify-content-center container-fluid">
+                        <p1 class="first_text">Вход</p1>
+                    </div>
+                    <form method="post">
+                        <div class="log-form__wrapper">
+                            <div class="login-box__log container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Логин</p1>
+                                </div>
+                                <input name="loginLog" class="w-100 input-sign__box" type="text" id="input-login__id" placeholder="Введите логин*" />
+                            </div>
+                            <div class="password-box__log container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Пароль</p1>
+                                </div>
+                                <input name="psswdLog" class="w-100 input-sign__box" type="password" id="input-password__id" placeholder="Введите пароль*" />
+                            </div>
+                            <div class="w-100">
+                                <a class="forget-password-ask" asp-page="Index">Забыли пароль?</a>
+                                <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
+                                    <button type="submit" class="btn-login" asp-page-handler="Log">
+                                        <span class="font-weight-bold">Войти</span>
+                                    </button>
+                                    <a href="" class="btn-signin d-flex flex-column justify-content-center align-items-center">
+                                        <span class="font-weight-bold-signin d-flex justify-content-center">Зарегистрироваться</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                } else {
+                    <div class="d-flex justify-content-center container-fluid">
+                        <p1 class="first_text">Регистрация</p1>
+                    </div>
+                    <form method="post">
+                        <div class="signup-container">
+                            <div class="name-box__reg container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Имя</p1>
+                                </div>
+                                <input name="nameReg" class="w-100 input-sign__box" type="text" id="input-name__id" placeholder="Введите имя*" />
+                            </div>
+                            <div class="surname-box__reg container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Фамилия</p1>
+                                </div>
+                                <input name="surnameReg" class="w-100 input-sign__box" type="text" id="input-surname__id" placeholder="Введите фамилию*" />
+                            </div>
+                            <div class="email-box__reg container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Email</p1>
+                                </div>
+                                <input name="emailReg" class="w-100 input-sign__box" type="text" id="input-email__id" placeholder="Введите email*" />
+                            </div>
+                            <div class="login-box__reg container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Логин</p1>
+                                </div>
+                                <input name="loginReg" class="w-100 input-sign__box" type="text" id="input-login__id" placeholder="Введите логин*" />
+                            </div>
+                            <div class="password-box__reg container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Пароль</p1>
+                                </div>
+                                <input name="psswdReg" class="w-100 input-sign__box" type="password" id="input-password__id" placeholder="Введите пароль*" />
+                            </div>
+                            <div class="rpassword-box__reg container-fluid">
+                                <div class="container-fluid">
+                                    <p1 class="input-sign__word">Повторите пароль</p1>
+                                </div>
+                                <input name="rpsswdReg" class="w-100 input-sign__box" type="password" id="input-rpasswprd__id" placeholder="Повторите пароль*" />
+                            </div>
+                            <div class="w-100">
+                                <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
+                                    <button type="submit" class="btn-sign-up" asp-page-handler="Reg">
+                                        <span class="font-weight-bold-sign-up">Зарегистрироваться</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-8 right-side__wrapper">
+        <div class="right-side">
+        </div>
+    </div>
+</div>
+
+

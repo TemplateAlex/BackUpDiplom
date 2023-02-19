@@ -1,0 +1,117 @@
+﻿body {
+    overflow: hidden;
+}
+
+.mainWrapper {
+    height: 100vh;
+}
+
+.left-side__wrapper, .right-side__wrapper {
+    height: 100%;
+}
+
+.left-side__wrapper {
+    background-color: #EAE9E5;
+}
+
+.right-side__wrapper {
+    background-color: #BDD3CC;
+}
+
+.form-container__wrapper {
+    width: 70%;
+}
+
+.login-box__log, .name-box__reg {
+    margin-top: 25px;
+}
+
+.password-box__log, .surname-box__reg, .email-box__reg, .login-box__reg, .password-box__reg, .rpassword-box__reg {
+    margin-top: 10px;
+}
+
+.input-sign__word {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #695C5C;
+    margin-left: -20px;
+}
+ 
+.input-sign__box {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    height: 44.16px;
+    width: 349.64px;
+}
+
+/*Styles for text*/
+
+.first_text {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height:36px;
+    color: #000;
+}
+
+.btn-login, .btn-signin, .btn-sign-up {
+    width: 75%;
+    height: 48px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-login, .btn-sign-up {
+    background: #2A2539;
+}
+
+.btn-signin {
+    box-sizing: border-box;
+    border: 3px solid #2A2539;
+    text-decoration: none;
+}
+
+.font-weight-bold, .font-weight-bold-sign-up {
+    width: 53px;
+    height: 24px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFF;
+}
+
+.font-weight-bold-signin {
+    width: 174px;
+    height: 24px;
+    font-family: 'Poppins' sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #2A2539;
+}
+
+.forget-password-ask {
+    width: 122px;
+    height: 23px;
+    font-family: 'Poppins' sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 22px;
+    text-decoration: none;
+    color: #E86969;
+    margin-left: 25px;
+    margin-top: 10px;
+}
+
+.btns-container__wrapper {
+    margin-left: 11%;
+}
