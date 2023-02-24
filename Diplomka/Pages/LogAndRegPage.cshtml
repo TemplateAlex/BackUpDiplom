@@ -31,19 +31,19 @@
                                 <input name="psswdLog" class="w-100 input-sign__box" type="password" id="input-password__id" placeholder="Введите пароль*" />
                             </div>
                             <div class="w-100">
-                                <a class="forget-password-ask" asp-page="Index">Забыли пароль?</a>
+                                <a class="forget-password-ask" href="@Url.Page("LogAndRegPage", new { namePage="Forget"})">Забыли пароль?</a>
                                 <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
                                     <button type="submit" class="btn-login" asp-page-handler="Log">
                                         <span class="font-weight-bold">Войти</span>
                                     </button>
-                                    <a href="" class="btn-signin d-flex flex-column justify-content-center align-items-center">
+                                    <a href="@Url.Page("LogAndRegPage", new { namePage = "Reg" })" class="btn-signin d-flex flex-column justify-content-center align-items-center">
                                         <span class="font-weight-bold-signin d-flex justify-content-center">Зарегистрироваться</span>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </form>
-                } else {
+                } else if(Model.TypePage == "Reg") {
                     <div class="d-flex justify-content-center container-fluid">
                         <p1 class="first_text">Регистрация</p1>
                     </div>
@@ -94,6 +94,8 @@
                             </div>
                         </div>
                     </form>
+                } else {
+
                 }
             </div>
         </div>

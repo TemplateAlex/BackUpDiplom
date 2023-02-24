@@ -8,7 +8,7 @@ namespace Diplomka.Pages
         public string TypePage { get; set; }
         public IActionResult OnGet(string namePage) 
         {
-            if (namePage == "Log" || namePage == "Reg")
+            if (namePage == "Log" || namePage == "Reg" || namePage == "Forget")
             {
                 TypePage = namePage;
                 return Page();
