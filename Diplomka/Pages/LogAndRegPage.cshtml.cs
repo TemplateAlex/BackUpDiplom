@@ -30,7 +30,14 @@ namespace Diplomka.Pages
 
         public IActionResult OnPostForget() 
         {
-            return RedirectToPage("Index");
+            var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
+
+            if (urlPageLog != null) 
+            {
+                return Redirect(urlPageLog);
+            }
+
+            return RedirectToPage("Index"); 
         }
     }
 }
