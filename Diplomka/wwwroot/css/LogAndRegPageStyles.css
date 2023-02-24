@@ -59,14 +59,14 @@
     color: #000;
 }
 
-.btn-login, .btn-signin, .btn-sign-up {
+.btns-logAndReg {
     width: 75%;
     height: 48px;
     border-radius: 5px;
     margin-top: 10px;
 }
 
-.btn-login, .btn-sign-up {
+.darkBlueButton {
     background: #2A2539;
 }
 
@@ -76,11 +76,11 @@
     text-decoration: none;
 }
 
-.font-weight-bold, .font-weight-bold-sign-up {
+.font-weight-bold-white-text {
     width: 53px;
     height: 24px;
     font-family: 'Poppins', sans-serif;
-    font-style: normal;
+    font-style:normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;

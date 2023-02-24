@@ -33,10 +33,10 @@
                             <div class="w-100">
                                 <a class="forget-password-ask" href="@Url.Page("LogAndRegPage", new { namePage="Forget"})">Забыли пароль?</a>
                                 <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
-                                    <button type="submit" class="btn-login" asp-page-handler="Log">
-                                        <span class="font-weight-bold">Войти</span>
+                                    <button type="submit" class="darkBlueButton btns-logAndReg" asp-page-handler="Log">
+                                        <span class="font-weight-bold-white-text">Войти</span>
                                     </button>
-                                    <a href="@Url.Page("LogAndRegPage", new { namePage = "Reg" })" class="btn-signin d-flex flex-column justify-content-center align-items-center">
+                                    <a href="@Url.Page("LogAndRegPage", new { namePage = "Reg" })" class="btn-signin btns-logAndReg d-flex flex-column justify-content-center align-items-center">
                                         <span class="font-weight-bold-signin d-flex justify-content-center">Зарегистрироваться</span>
                                     </a>
                                 </div>
@@ -87,15 +87,32 @@
                             </div>
                             <div class="w-100">
                                 <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
-                                    <button type="submit" class="btn-sign-up" asp-page-handler="Reg">
-                                        <span class="font-weight-bold-sign-up">Зарегистрироваться</span>
+                                    <button type="submit" class="darkBlueButton btns-logAndReg" asp-page-handler="Reg">
+                                        <span class="font-weight-bold-white-text">Зарегистрироваться</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </form>
                 } else {
-
+                    <div class="d-flex justify-content-center container-fluid">
+                        <p1 class="first_text">Забыли пароль?</p1>
+                    </div>
+                    <form method="post">
+                        <div class="forget-psswd__wrapper">
+                            <div class="email-box__forget container-fluid">
+                                <p1 class="input-sign__word">Email</p1>
+                            </div>
+                            <input name="emailForget" class="w-100 input-sign__box" type="text" id="input-emailForget__id" placeholder="Впишите email*" />
+                        </div>
+                        <div class="w-100">
+                            <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
+                                <button type="submit" class="btns-logAndReg darkBlueButton" asp-page-handler="Forget">
+                                    <span class="font-weight-bold-white-text">Отправить письмо</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 }
             </div>
         </div>

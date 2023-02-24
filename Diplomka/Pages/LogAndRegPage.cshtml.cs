@@ -18,5 +18,19 @@ namespace Diplomka.Pages
                 return RedirectToPage("Index");
             }
         }
+        public IActionResult OnPostLog() 
+        {
+            return RedirectToPage("Index");
+        }
+
+        public IActionResult OnPostReg() 
+        {
+            return RedirectToPage("Index");
+        }
+
+        public IActionResult OnPostForget() 
+        {
+            return RedirectToPage("Index");
+        }
     }
 }
