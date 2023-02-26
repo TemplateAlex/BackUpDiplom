@@ -9,7 +9,7 @@
 }
 
 <div class="mainWrapper row">
-    <div class="col-4 left-side__wrapper d-flex justify-content-center align-items-center">
+    <div class="col-5 left-side__wrapper d-flex justify-content-center align-items-center">
         <div class="form-container__wrapper">
             <div class="form-container w-100">
                 @if(Model.TypePage == "Log") {
@@ -30,13 +30,13 @@
                                 </div>
                                 <input name="psswdLog" class="w-100 input-sign__box" type="password" id="input-password__id" placeholder="Введите пароль*" />
                             </div>
-                            <div class="w-100">
+                            <div class="w-100 mt-4">
                                 <a class="forget-password-ask" href="@Url.Page("LogAndRegPage", new { namePage="Forget"})">Забыли пароль?</a>
-                                <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
+                                <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid mt-3">
                                     <button type="submit" class="darkBlueButton btns-logAndReg" asp-page-handler="Log">
                                         <span class="font-weight-bold-white-text">Войти</span>
                                     </button>
-                                    <a href="@Url.Page("LogAndRegPage", new { namePage = "Reg" })" class="btn-signin btns-logAndReg d-flex flex-column justify-content-center align-items-center">
+                                    <a href="@Url.Page("LogAndRegPage", new { namePage = "Reg" })" class="btn-signin btns-logAndReg d-flex flex-column justify-content-center align-items-center mt-3">
                                         <span class="font-weight-bold-signin d-flex justify-content-center">Зарегистрироваться</span>
                                     </a>
                                 </div>
@@ -85,7 +85,7 @@
                                 </div>
                                 <input name="rpsswdReg" class="w-100 input-sign__box" type="password" id="input-rpasswprd__id" placeholder="Повторите пароль*" />
                             </div>
-                            <div class="w-100">
+                            <div class="w-100 mt-4">
                                 <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
                                     <button type="submit" class="darkBlueButton btns-logAndReg" asp-page-handler="Reg">
                                         <span class="font-weight-bold-white-text">Зарегистрироваться</span>
@@ -106,7 +106,7 @@
                             <input name="emailForget" class="w-100 input-sign__box" type="text" id="input-emailForget__id" placeholder="Впишите email*" />
                         </div>
                         <div class="w-100">
-                            <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid">
+                            <div class="btns-container__wrapper d-flex flex-column justify-content-center container-fluid mt-3">
                                 <button type="submit" class="btns-logAndReg darkBlueButton" asp-page-handler="Forget">
                                     <span class="font-weight-bold-white-text">Получить код</span>
                                 </button>
@@ -117,7 +117,7 @@
             </div>
         </div>
     </div>
-    <div class="col-8 right-side__wrapper">
+    <div class="col-7  right-side__wrapper">
         <div class="right-side">
         </div>
     </div>
