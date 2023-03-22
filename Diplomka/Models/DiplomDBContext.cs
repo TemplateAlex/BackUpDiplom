@@ -17,7 +17,25 @@ namespace Diplomka.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\\MSSQLLocalDB;Database=DBDiplom;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=DBDiplom;Trusted_Connection=True;");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Authentications>()
+                .HasOne(a => a.Users)
+                .WithOne(u => u.Authentications)
+                .HasForeignKey<Users>(u => u.AuthenticationId);
+            modelBuilder.Entity<Roles>()
+                .HasOne(b => b.Users)
+                .WithOne(d => d.Roles)
+                .HasForeignKey<Users>(d => d.RoleId);
+            modelBuilder.Entity<EducationPrCode>()
+                .HasOne(p => p.EducationProgram)
+                .WithOne(c => c.EducationPrCode)
+                .HasForeignKey<EducationProgram>(c => c.EducationCodeId);
+            modelBuilder.Entity<EducationProgram>()
+                 .HasMany(ep => ep.Subjects)
+                 .WithOne(s => s.EducationProgram);
         }
     }
 }
