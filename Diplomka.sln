@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomka", "Diplomka\Diplomka.csproj", "{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncrypDecryp", "EncrypDecryp\EncrypDecryp.csproj", "{3666C735-EDC8-40F1-A7AB-9725F9415710}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
