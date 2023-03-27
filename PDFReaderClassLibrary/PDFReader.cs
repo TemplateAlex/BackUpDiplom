@@ -26,7 +26,10 @@ namespace PDFReaderClassLibrary
             string resultString = sbInitPdfText.ToString(); //Not edited text
             string deletePartSubstring = "Список обладателей образовательных грантов по квоте для детей-сирот и детей, оставшихся без";
 
-            resultString = resultString.Substring(0, resultString.IndexOf(deletePartSubstring)); // delete info about orphans, disabled and e.t.c
+            if (resultString.IndexOf(deletePartSubstring) != -1)
+            {
+                resultString = resultString.Substring(0, resultString.IndexOf(deletePartSubstring)); // delete info about orphans, disabled and e.t.c
+            }
 
             //Find education code matches in main text
             string patternForEducationCode = @"B\d{3}";
@@ -93,7 +96,7 @@ namespace PDFReaderClassLibrary
                     if (isNumber)
                     {
                         //string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;";
-                        string insertQuery = $"INSERT INTO TmpTable(Id, Points, Code) VALUES('{Guid.NewGuid()}', {number}, '{code}')";
+                        string insertQuery = $"INSERT INTO ENTScoresByYear(Id, Points, Code, Year) VALUES('{Guid.NewGuid().ToString().ToUpper()}', {number}, '{code}', '2019')";
                         await SQLHelper.InsertDataIntoDb(connectionString, insertQuery);
                         break;
                     }
