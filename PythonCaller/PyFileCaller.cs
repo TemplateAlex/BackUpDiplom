@@ -30,57 +30,41 @@ namespace PythonCaller
             });
         }*/
 
-        public static void CallPythonFile(string path)
-        {
-            ScriptEngine scriptEngine = Python.CreateEngine();
+        private static readonly string mainRoute = "D:\\Diplomka\\Diplomka\\Diplomka\\wwwroot\\PythonScripts";
 
-            scriptEngine.Execute(path);
+        public static void CallPythonFile()
+        {
+            InsertIntoTablesAVGAndMINValues();
+            CreatePredictionByLinearRegression();
         }
 
         public static async Task CallPythonFileAsync()
         {
             await Task.Run(() =>
             {
-                string mainRoute = "D:\\Diplomka\\Diplomka\\Diplomka\\wwwroot\\PythonScripts";
-
-                InsertIntoTablesAVGAndMINValues(mainRoute);
-
-                CreateMinPredictionByLinearRegression(mainRoute);
-                CreateAvgPredictionByLinearRegression(mainRoute);
-                
+                InsertIntoTablesAVGAndMINValues();
+                CreatePredictionByLinearRegression();
             });
         }
 
-        private static void InsertIntoTablesAVGAndMINValues(string mainRoute)
+        private static void InsertIntoTablesAVGAndMINValues()
         {
             Process process = new Process();
             process.StartInfo.FileName = "python.exe";
             process.StartInfo.UseShellExecute = false;
-            process.StartInfo.Arguments = mainRoute + "\\TestGetAvgAndMinValues.py";
+            process.StartInfo.Arguments = mainRoute + "\\GetAvgAndMinOrders.py";
             process.StartInfo.RedirectStandardOutput = true;
 
             process.Start();
             process.WaitForExit();
         }
 
-        private static void CreateMinPredictionByLinearRegression(string mainRoute)
+        private static void CreatePredictionByLinearRegression()
         {
             Process process = new Process();
             process.StartInfo.FileName = "python.exe";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.Arguments = mainRoute + "\\TestPredictionPointMinimum.py";
-            process.StartInfo.RedirectStandardOutput = true;
-
-            process.Start();
-            process.WaitForExit();
-        }
-
-        private static void CreateAvgPredictionByLinearRegression(string mainRoute)
-        {
-            Process process = new Process();
-            process.StartInfo.FileName = "python.exe";
-            process.StartInfo.UseShellExecute = false;
-            process.StartInfo.Arguments = mainRoute + "\\TestPredictionPointAverage.py";
+            process.StartInfo.UseShellExecute=false;
+            process.StartInfo.Arguments = mainRoute + "\\GetPredictions.py";
             process.StartInfo.RedirectStandardOutput = true;
 
             process.Start();

@@ -132,8 +132,6 @@ namespace Diplomka.Pages
             {
 
             }
-
-            ErrorWithForgetPage = "Sorry problem with email. Email doesn't correct";
             /*var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
 
             if (urlPageLog != null) 
