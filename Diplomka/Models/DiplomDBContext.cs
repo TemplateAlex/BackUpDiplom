@@ -14,10 +14,9 @@ namespace Diplomka.Models
         public DbSet<EducationPrCode> EducationPrCode { get; set; }
         public DbSet<EducationProgram> EducationProgram { get; set; }
         public DbSet<Users> Users { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=DBDiplom;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,17 +24,20 @@ namespace Diplomka.Models
                 .HasOne(a => a.Users)
                 .WithOne(u => u.Authentications)
                 .HasForeignKey<Users>(u => u.AuthenticationId);
+
             modelBuilder.Entity<Roles>()
-                .HasOne(b => b.Users)
-                .WithOne(d => d.Roles)
-                .HasForeignKey<Users>(d => d.RoleId);
+                .HasOne(r => r.Users)
+                .WithOne(u => u.Roles)
+                .HasForeignKey<Users>(r => r.RoleId);
+
             modelBuilder.Entity<EducationPrCode>()
-                .HasOne(p => p.EducationProgram)
-                .WithOne(c => c.EducationPrCode)
-                .HasForeignKey<EducationProgram>(c => c.EducationCodeId);
+                .HasOne(epc => epc.EducationProgram)
+                .WithOne(ep => ep.EducationPrCode)
+                .HasForeignKey<EducationProgram>(ep => ep.EducationCodeId);
+
             modelBuilder.Entity<EducationProgram>()
-                 .HasMany(ep => ep.Subjects)
-                 .WithOne(s => s.EducationProgram);
+                .HasMany(ep => ep.Subjects)
+                .WithOne(s => s.EducationProgram);
         }
     }
 }

@@ -124,16 +124,25 @@ namespace Diplomka.Pages
             return RedirectToPage("Index");
         }
 
-        public IActionResult OnPostForget() 
+        public IActionResult OnPostForget(string emailForget) 
         {
-            var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
+
+            Authentications? userAuth = _context.Authentications.FirstOrDefault(a => a.Email == emailForget);
+
+            if (userAuth != null) 
+            {
+
+            }
+            /*var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
 
             if (urlPageLog != null) 
             {
                 return Redirect(urlPageLog);
             }
 
-            return RedirectToPage("Index"); 
+            return RedirectToPage("Index"); */
+
+            return Page();
         }
     }
 }

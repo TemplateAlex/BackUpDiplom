@@ -5,6 +5,10 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Diplomka", "Diplomka\Diplomka.csproj", "{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDFReaderClassLibrary", "PDFReaderClassLibrary\PDFReaderClassLibrary.csproj", "{595B7A86-67FE-4503-9176-AFF79FD7D876}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonCaller", "PythonCaller\PythonCaller.csproj", "{9B37A436-F72B-498B-8F9B-908AB2C92B5E}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncrypDecryp", "EncrypDecryp\EncrypDecryp.csproj", "{3666C735-EDC8-40F1-A7AB-9725F9415710}"
 EndProject
 Global
@@ -17,6 +21,14 @@ Global
 		{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38DB6677-351B-44D2-BC89-A2DCC95C6ACA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{595B7A86-67FE-4503-9176-AFF79FD7D876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{595B7A86-67FE-4503-9176-AFF79FD7D876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{595B7A86-67FE-4503-9176-AFF79FD7D876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{595B7A86-67FE-4503-9176-AFF79FD7D876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B37A436-F72B-498B-8F9B-908AB2C92B5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B37A436-F72B-498B-8F9B-908AB2C92B5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B37A436-F72B-498B-8F9B-908AB2C92B5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B37A436-F72B-498B-8F9B-908AB2C92B5E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3666C735-EDC8-40F1-A7AB-9725F9415710}.Release|Any CPU.ActiveCfg = Release|Any CPU
