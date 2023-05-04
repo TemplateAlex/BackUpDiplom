@@ -1,0 +1,256 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+}
+
+:root {
+    --index: calc(1vw + 1vh);
+    --colot-header: #EAE9E5;
+
+}
+
+@font-face{
+    font-family:igra-sans-c;
+    src: url(../fonts/IgraSans.otf);
+}
+
+@font-face {
+    font-family: outfit-c;
+    src: url(../fonts/outfit-regular.woff2);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family:igra-sans-c;
+}
+
+body {
+    height: 100%;
+    background-color: #2A2539;
+    color: #EAE9E5;
+    font-family: igra-sans-c;
+    overflow-x: hidden;
+}
+
+.main_img {
+    position: absolute;
+    width: calc(var(--index) * 80);
+    left: 20vw;
+    top: 30vh;
+    opacity: 0.4;
+}
+
+.main-header {
+    height: 100vh;
+    padding: 0 0 0 10px;
+    
+}
+.wrapper {
+    position: relative;
+    display: -webkit-box;
+    
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.conteiner {
+    padding: 0 10vw;
+    width:100%;
+    position: absolute;
+}
+
+.analysis_section{
+    height:90vh;
+}
+
+.main-title {
+    
+    font-size: calc(var(--index) * 5);
+    position: relative;
+    width: min-content;
+    bottom: -15vh;
+    right: -10vw;
+    line-height: 1.1;
+}
+
+
+
+
+
+
+.btn-description {
+    position: absolute;
+    box-sizing: border-box;
+    position: absolute;
+    width: 12vw;
+    height: 5.8vh;
+    left: 51vw;
+    top: 75vh;
+    border: 2px solid #EAE9E5;
+    border-radius: 5px;
+}
+
+
+
+.font-weight-bold-description {
+    width: 70px;
+    height: 24px;
+    left: 533px;
+    top: 683px;
+    font-family: 'Igra Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    
+
+
+    color: rgba(234, 233, 229, 0.9);
+}
+
+.btn-action {
+    position: absolute;
+    width: 12vw;
+    height: 5.8vh;
+    left: 64vw;
+    top: 75vh;
+    background: #EAE9E5;
+    border-radius: 5px;
+    border: none;
+    font: inherit;
+
+}
+
+.welcome-section{
+    color:white;
+    background-color:black;
+    width:100%;
+    height:1000px;
+    
+}
+
+.content-box {
+    padding-inline: 100px;
+    padding-block: 50px;
+    font-family: igra-sans-c;
+}
+
+.content-text{
+    
+    width: 50vw;
+    height: 100%;
+}
+
+    .content-text h3 {
+        font-size: 25px;
+        line-height: 1.8;
+        
+    }
+
+    .content-text h4 {
+        font-size: 15px;
+        padding-top: 20px;
+        line-height: 1.9;
+        
+    }
+
+
+.keyboard-effect-text {
+    background-color: #2A2539;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    width: 100vw;
+}
+
+.keyboard-effect-text-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keyboard-effect-text-wrapper .static-text {
+    margin-right: -19px;
+    margin-top: 3px;
+    color: #EAE9E5;
+    font-size: 30px;
+}
+
+.keyboard-effect-text-wrapper .dynamic-texts {
+        
+    height: 90px;
+    line-height: 90px;
+    overflow: hidden;
+}
+
+.dynamic-texts li {
+    list-style: none;
+    color: #FC6D6D;
+    font-size: 30px;
+    
+    position: relative;
+    top: 10px;
+    animation: slide 5s steps(4) infinite;
+}
+
+@keyframes slide {
+    100% {
+        top: -350px;
+    }
+}
+
+.dynamic-texts li span {
+    position: relative;
+    margin: 5px 0;
+    
+}
+
+
+
+#input1 {
+    position: absolute;
+    width: 20vw;
+    height: 6vh;
+    top: 10vh;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+#input2 {
+    position: absolute;
+    width: 20vw;
+    height: 6vh;
+    top: 20vh;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+#input3 {
+    position: absolute;
+    width: 20vw;
+    height: 6vh;
+    top: 30vh;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+}
+
+
+
+
+
+ 
+
+

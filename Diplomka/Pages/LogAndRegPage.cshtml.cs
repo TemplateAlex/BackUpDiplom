@@ -35,6 +35,7 @@ namespace Diplomka.Pages
         public IActionResult OnPostLog(string loginLog, string psswdLog) 
         {
             var auth = _context.Authentications.FirstOrDefault(a => a.LoginName == loginLog && a.Password == psswdLog);
+
             if (auth != null) 
             {
                 string roleId = _context.Users.FirstOrDefault(u => u.AuthenticationId == auth.Id).RoleId;
@@ -53,7 +54,7 @@ namespace Diplomka.Pages
             var auth = _context.Authentications.FirstOrDefault(a => a.LoginName == loginReg);
             if (string.IsNullOrEmpty(psswdReg))
             {
-                Console.WriteLine("Xyi ty che tut proverish");
+                Console.WriteLine("ne proverish");
                 return Page();
             }
             if (psswdReg.Equals(rpsswdReg))
@@ -68,7 +69,7 @@ namespace Diplomka.Pages
                 match = regex.Match(surnameReg);
                 if (string.IsNullOrEmpty(surnameReg)|| match.Success)
                 {
-                    Console.WriteLine("хуйня твоя фамилия, переделывай");
+                    Console.WriteLine("переделывай фамилию");
                     return Page();
                 }
                 patternIdIncoming = @"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|""(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*"")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
@@ -76,20 +77,20 @@ namespace Diplomka.Pages
                 match = regex.Match(emailReg);
                 if (string.IsNullOrEmpty(emailReg) || !match.Success)
                 {
-                    Console.WriteLine("я тебе блять не почтовый голубь, нормально имэйл пиши");
+                    Console.WriteLine("нормально имэйл пишите");
                     return Page();
                 }
                 if (string.IsNullOrEmpty(loginReg))
                 {
-                    Console.WriteLine("ты долбаеб хуйня логин");
+                    Console.WriteLine("заполни поле");
                     return Page();
                 }
                 if(string.IsNullOrEmpty(psswdReg))
                 {
-                    Console.WriteLine("минимум 4 символа, еблан");
+                    Console.WriteLine("заполни поле");
                     return Page();
                 }
-                    //красава авторизуем тебя
+                    //красава, авторизуем тебя
                 if (auth == null)
                 {
                     string authenId = Guid.NewGuid().ToString().ToUpper();
