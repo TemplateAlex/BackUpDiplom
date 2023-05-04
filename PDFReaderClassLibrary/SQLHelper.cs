@@ -9,25 +9,25 @@ namespace PDFReaderClassLibrary
 {
     internal class SQLHelper
     {
-        public static async Task<string> InsertDataIntoDb(string connectionString, string query)
+        public static async Task InsertDataIntoDb(string connectionString, string insertQuery)
         {
-            try
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString)) 
             {
-                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-                {
-                    await sqlConnection.OpenAsync();
+                await sqlConnection.OpenAsync();
 
-                    SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand(insertQuery, sqlConnection);
 
-                    await sqlCommand.ExecuteNonQueryAsync();
-
-                }
-
-                return "OK";
+                await sqlCommand.ExecuteNonQueryAsync();
             }
-            catch(Exception ex)
+        }
+
+        public static async Task DeleteDataFromDB(string connectionString, string deleteQuery) 
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString)) 
             {
-                return ex.Message;
+                await sqlConnection.OpenAsync();
+                SqlCommand sqlCommand = new SqlCommand(deleteQuery, sqlConnection);
+                await sqlCommand.ExecuteNonQueryAsync();
             }
         }
     }

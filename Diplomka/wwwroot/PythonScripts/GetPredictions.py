@@ -39,8 +39,8 @@ def CreatePredictions(cursor, resultOfAllCode, nowYear, typeTable):
                 point = 10
             elif predictionPoint[0] > 140:
                 point = 140
-            elif predictionPoint[0] < 50:
-                point = 50
+            elif predictionPoint[0] < 65:
+                point = 65
             else:
                 point = predictionPoint[0]
 

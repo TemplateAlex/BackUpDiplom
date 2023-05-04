@@ -11,21 +11,5 @@ namespace Diplomka.Pages
         public void OnGet()
         {
         }
-
-        public async Task<IActionResult> OnPostRofl() 
-        {
-            string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;";
-            string path = "C:\\Users\\Alex\\Downloads\\grants_2019_rus_protected.pdf";
-            Check = await PDFReader.CreateOrdersInDBByPDFText(path, connectionString);
-
-            return Page();
-        }
-
-        public async Task<IActionResult> OnPostCallPython()
-        {
-            await PyFileCaller.CallPythonFileAsync();
-
-            return Page();
-        }
     }
 }

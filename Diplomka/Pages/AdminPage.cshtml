@@ -1,5 +1,34 @@
-﻿@page
+﻿@page "{namePage?}"
 @model Diplomka.Pages.AdminPageModel
 @{
+    Layout = "/Pages/Shared/_LayoutForAdminPage.cshtml";
 }
 
+@if(Model.IsSuccess) {
+    <div class="container-fluid d-flex justify-content-center">
+        <h1>Данные были добавлены успешно</h1>
+    </div>
+}
+
+@if(Model.TypePage == "FillPoints") {
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="fileInputId">Добавьте файл с баллами:</label>
+            <input type="file" class="form-control" id="fileInputId" asp-for="UploadFile" />
+        </div>
+        <div class="form-group mt-3">
+            <label for="yearInputId">Год ЕНТ:</label>
+            <input type="text" class="form-control" id="yearInputId" name="year" aria-describedby="yearHelp" />
+            @if(Model.IsYearExist) {
+                <small id="yearHelp" class="form-text text-danger">Эта дата уже существует</small>
+            }
+        </div>
+        <button class="btn btn-outline-dark mt-3" type="submit">Добавить данные</button>
+    </form>
+
+    <form method="post">
+        <button class="btn btn-outline-dark mt-2" type="submit" asp-page-handler="CreatePredictions">Проаналиировать</button>
+    </form>
+} else {
+    <div>Something</div>
+}

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тут может находиться ваша реклама</title>
+    <link href="~/css/AdminPageStyle.css" type="text/css" rel="stylesheet"/>
+    @await Html.PartialAsync("_ValidationLayoutStyles")
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a asp-page="AdminPage" asp-route-namePage="" class="navbar-brand ms-5">Коляновская панель</a>
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" asp-page="AdminPage" asp-route-namePage="FillPoints">Заполнить данные</a>
+            </div>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="main-container">
+            <div class="main-container__wrapper ms-3">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+
+    @await Html.PartialAsync("_ValidationLayoutScripts")
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

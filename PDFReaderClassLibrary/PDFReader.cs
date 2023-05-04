@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System.Text.RegularExpressions;
+using Microsoft.Data.SqlClient;
 
 namespace PDFReaderClassLibrary
 {
     public class PDFReader
     {
-        public static async Task<string> CreateOrdersInDBByPDFText(string path, string connectionString)
+        public static async Task CreateOrdersInDBByPDFText(string path, string year, string connectionString)
         {
             PdfReader pdfReader = new PdfReader(path);
             StringBuilder sbInitPdfText = new StringBuilder();
@@ -37,7 +38,7 @@ namespace PDFReaderClassLibrary
             Match match = regexForEducationCode.Match(resultString);
 
             while (true)
-            {
+            {   
                 if (!match.Success)
                 {
                     break;
@@ -57,28 +58,35 @@ namespace PDFReaderClassLibrary
                     clipper = resultString.IndexOf(match.NextMatch().Groups[0].Value);
                     string textWithPoints = resultString.Substring(0, clipper);
                     string codeName = match.Groups[0].Value;
-                    await CreateOrdersByEditedText(textWithPoints, match.Groups[0].Value, connectionString);
+                    await CreateOrdersByEditedText(textWithPoints, match.Groups[0].Value, year, connectionString);
 
 
 
                 }
                 else if (match.Success)
                 {
-                    await CreateOrdersByEditedText(resultString.Substring(0, resultString.Length), match.Groups[0].Value, connectionString);
+                    await CreateOrdersByEditedText(resultString.Substring(0, resultString.Length), match.Groups[0].Value, year, connectionString);
                 }
 
                 match = match.NextMatch();
             }
-
-            return "OK";
         }
 
-        protected static async Task CreateOrdersByEditedText(string editedText, string code, string connectionString)
+        protected static async Task CreateOrdersByEditedText(string editedText, string code, string year, string connectionString)
         {
             string tmpText = editedText;
             string patternIdIncoming = @"\d{9}";
             Regex regex = new Regex(patternIdIncoming);
             Match match = regex.Match(tmpText);
+
+            StringBuilder sbQuery = new StringBuilder();
+
+            sbQuery.Append("SELECT s.SubjectName ");
+            sbQuery.Append("FROM EducationProgram ep ");
+            sbQuery.Append("INNER JOIN Subjects s ON s.Id = ep.SubjId ");
+            sbQuery.Append($"WHERE ep.EducationCodeId = (SELECT Id FROM EducationPrCode WHERE CodeName = '{code}') ");
+
+            string subject = GetSubject(connectionString, sbQuery.ToString());
 
             while(match.Success)
             {
@@ -95,9 +103,11 @@ namespace PDFReaderClassLibrary
 
                     if (isNumber)
                     {
-                        //string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;";
-                        string insertQuery = $"INSERT INTO ENTScoresByYear(Id, Points, Code, Year) VALUES('{Guid.NewGuid().ToString().ToUpper()}', {number}, '{code}', '2019')";
-                        await SQLHelper.InsertDataIntoDb(connectionString, insertQuery);
+                        if ((subject == "Творческий экзамен/Творческий экзамен" && number >= 35) || number >= 65)
+                        {
+                            string insertQuery = $"INSERT INTO ENTScoresByYear(Id, Points, Code, Year) VALUES('{Guid.NewGuid().ToString().ToUpper()}', {number}, '{code}', '{year}')";
+                            await SQLHelper.InsertDataIntoDb(connectionString, insertQuery);
+                        }
                         break;
                     }
                     else
@@ -108,6 +118,30 @@ namespace PDFReaderClassLibrary
 
                 match = match.NextMatch();
             }
+        }
+
+        protected static string GetSubject(string connectionString, string query)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+
+                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        return reader.GetString(0);
+                    }
+                }
+
+                reader.Close();
+            }
+
+            return null;
         }
     }
 }
