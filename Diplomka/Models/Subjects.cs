@@ -6,6 +6,7 @@ namespace Diplomka.Models
     {
         public string? Id { get; set; }
         public string? SubjectName { get; set; }
+        public string? Number { get; set; }
         public EducationProgram? EducationProgram { get; set; }
     }
 }

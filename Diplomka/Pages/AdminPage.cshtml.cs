@@ -7,12 +7,23 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Text.RegularExpressions;
 using Microsoft.Data.SqlClient;
+using System.Text;
+using Diplomka.Models;
 
 namespace Diplomka.Pages
 {
     public class AdminPageModel : PageModel
     {
         private IWebHostEnvironment _environment;
+
+        private readonly string _dbConnection;
+
+        private readonly DiplomDBContext _context;
+
+        public List<ENTAVGPredictions> AVGPrediction { get; set; }
+
+        public List<ENTMINPredictions> MINPrediction { get; set; }
+
         [BindProperty]
         public IFormFile? UploadFile { get; set; }
 
@@ -25,32 +36,65 @@ namespace Diplomka.Pages
 
         public bool IsSuccess { get; set; } = false;
 
-        public AdminPageModel(IWebHostEnvironment enviroment)
+        public AdminPageModel(IWebHostEnvironment enviroment, DiplomDBContext context)
         {
             this._environment = enviroment;
+            this._dbConnection = "Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;";
+            this._context = context;
         }
 
         public void OnGet(string namePage)
         {
             this.TypePage = namePage;
+
+            if (namePage == "Download")
+            {
+                AVGPrediction = _context.ENTAVGPredictions.ToList();
+                MINPrediction = _context.ENTMINPredictions.ToList();
+            }
         }
 
         public async Task<IActionResult> OnPostCreatePredictions()
         {
+            string path = this._environment.ContentRootPath + "\\backUpFiles\\" + "backUpPoints.csv";
+            FileInfo file = new FileInfo(path);
+
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+
+            WriteFile(path);
+
+            DeleteAllPredictions();
+
             await PyFileCaller.CallPythonFileAsync();
 
             OnGet("FillPoints");
             return Page();
         }
+
+        public IActionResult OnPostDownload()
+        {
+            string path = this._environment.ContentRootPath + "\\backUpFiles\\" + "PresentPoints.csv";
+            FileInfo file = new FileInfo(path);
+
+            if (file.Exists)
+            {
+                file.Delete();
+            }
+
+            WriteFile(path);
+            OnGet("Download");
+            return PhysicalFile(path, "application/octet-stream", "PredictionPoints.csv");
+        }
         public async Task<IActionResult> OnPost()
         {
-            string connectionString = "Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;";
-
             if (UploadFile != null && !string.IsNullOrEmpty(Year)) 
             {
                 string path = this._environment.ContentRootPath + "\\uploads\\" + UploadFile.FileName;
                 Match match = (new Regex(@"\d{4}")).Match(Year);
-                bool isExistingYear = IsExistingYear(connectionString);
+                bool isExistingYear = IsExistingYear(this._dbConnection);
                 var file = Path.Combine(this._environment.ContentRootPath, "uploads", UploadFile.FileName);
 
                 if (match.Success && !isExistingYear)
@@ -60,7 +104,7 @@ namespace Diplomka.Pages
                         UploadFile.CopyTo(fileStream);
                     }
 
-                    await PDFReader.CreateOrdersInDBByPDFText(path, Year, connectionString);
+                    await PDFReader.CreateOrdersInDBByPDFText(path, Year, this._dbConnection);
                     IsSuccess = true;
                 }
                 else if (isExistingYear)
@@ -94,17 +138,72 @@ namespace Diplomka.Pages
             }
         }
 
-        private async Task DeletePointsByYear(string connectionString, string year)
+        private void DeleteAllPredictions()
         {
-            string deleteQuery = $"DELETE FROM ENTScoresByYear WHERE ENTYear = '{year}'";
+            List<Task> tasks = new List<Task>();
 
-            using (SqlConnection sqlConnection = new SqlConnection(connectionString)) 
+            string queryDeleteAVG = "DELETE FROM ENTAVGPredictions;";
+            string queryDeleteMIN = "DELETE FROM ENTMINPredictions;";
+
+            tasks.Add(DeletePredictionsFromTable(queryDeleteAVG));
+            tasks.Add(DeletePredictionsFromTable(queryDeleteMIN));
+
+            Task.WaitAll(tasks.ToArray());
+        }
+
+        private async Task DeletePredictionsFromTable(string query)
+        {
+            using (SqlConnection connection = new SqlConnection(this._dbConnection))
             {
-                await sqlConnection.OpenAsync();
+                await connection.OpenAsync();
 
-                SqlCommand sqlCommand = new SqlCommand(deleteQuery, sqlConnection);
-
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
                 await sqlCommand.ExecuteNonQueryAsync();
+            }
+        }
+
+        private void WriteFile(string path)
+        {
+            string queryAVGPoints = "SELECT Id, AVGPrediction, Code, Year FROM ENTAVGPredictions;";
+            string queryMINPoints = "SELECT Id, MINPrediction, Code, Year FROM ENTMINPredictions;";
+
+            List<Task> tasks = new List<Task>();
+
+            tasks.Add(WritePredictionsByTable(path, queryAVGPoints, "AVG"));
+            tasks.Add(WritePredictionsByTable(path, queryMINPoints, "MIN"));
+
+            Task.WaitAll(tasks.ToArray());
+
+
+        }
+
+        public async Task WritePredictionsByTable(string path, string query, string typeTable)
+        {
+            StringBuilder sbResult = new StringBuilder();
+            using (SqlConnection connection = new SqlConnection(this._dbConnection))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                sbResult.Append(typeTable + "\nId, AVGPrediction, Code, Year\n");
+
+                if (reader.HasRows)
+                {
+                    while(reader.Read())
+                    {
+                        sbResult.Append($"{reader.GetValue(0).ToString()}, {reader.GetValue(1).ToString()}," +
+                                        $" {reader.GetValue(2).ToString()}, {reader.GetValue(3).ToString()}\n");
+                    }
+                }
+            }
+
+            using (FileStream fsStream = new FileStream(path, FileMode.OpenOrCreate))
+            {
+                byte[] buffer = Encoding.Default.GetBytes(sbResult.ToString());
+                fsStream.Seek(0, SeekOrigin.End);
+                await fsStream.WriteAsync(buffer, 0, buffer.Length);
             }
         }
     }

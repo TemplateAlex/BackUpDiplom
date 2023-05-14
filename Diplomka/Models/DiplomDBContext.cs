@@ -14,6 +14,8 @@ namespace Diplomka.Models
         public DbSet<EducationPrCode> EducationPrCode { get; set; }
         public DbSet<EducationProgram> EducationProgram { get; set; }
         public DbSet<Users> Users { get; set; }
+        public DbSet<ENTMINPredictions> ENTMINPredictions { get; set; }
+        public DbSet<ENTAVGPredictions> ENTAVGPredictions { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;");

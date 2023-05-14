@@ -27,8 +27,57 @@
     </form>
 
     <form method="post">
-        <button class="btn btn-outline-dark mt-2" type="submit" asp-page-handler="CreatePredictions">Проаналиировать</button>
+        <button class="btn btn-outline-dark mt-2" type="submit" asp-page-handler="CreatePredictions">Проанализировать</button>
     </form>
+}else if(Model.TypePage == "Download") {
+    <form method="post" class="mt-3">
+        <button class="btn btn-outline-dark" asp-page-handler="Download">Скачать предсказанные баллы</button>
+    </form>
+    <div class="row">
+        <h1>Предсказанные баллы</h1>
+    </div>
+    <div class="row">
+        <div class="col-6 mt-3">
+            <table class="table table-striped table-dark">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Код предмета</th>
+                        <th>Средний балл</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(int i = 0; i < Model.AVGPrediction.Count; i++) {
+                        <tr>
+                            <th>@(i+1)</th>
+                            <th>@(Model.AVGPrediction[i].Code)</th>
+                            <th>@(Model.AVGPrediction[i].AVGPrediction)</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Код предмета</th>
+                        <th>Минимальный балл</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(int i = 0; i < Model.MINPrediction.Count; i++) {
+                        <tr>
+                            <th>@(i+1)</th>
+                            <th>@(Model.MINPrediction[i].Code)</th>
+                            <th>@(Model.MINPrediction[i].MINPrediction)</th>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 } else {
-    <div>Something</div>
+    <div>Страница в разработке</div>
 }
