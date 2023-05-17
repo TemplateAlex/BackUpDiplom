@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EncrypDecryp\EncrypDecryp.csproj" />
+    <ProjectReference Include="..\EncrypDecryp\EncryptorLib.csproj" />
   </ItemGroup>
 
 </Project>
