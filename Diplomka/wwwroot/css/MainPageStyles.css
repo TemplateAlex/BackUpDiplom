@@ -1,17 +1,16 @@
 ﻿* {
     margin: 0;
     padding: 0;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 :root {
     --index: calc(1vw + 1vh);
     --colot-header: #EAE9E5;
-
 }
 
-@font-face{
-    font-family:igra-sans-c;
+@font-face {
+    font-family: igra-sans-c;
     src: url(../fonts/IgraSans.otf);
 }
 
@@ -21,11 +20,11 @@
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family:igra-sans-c;
+    font-family: igra-sans-c;
 }
 
 body {
-    height: 100%;
+    height: 2000px;
     background-color: #2A2539;
     color: #EAE9E5;
     font-family: igra-sans-c;
@@ -38,21 +37,20 @@ body {
     left: 20vw;
     top: 30vh;
     opacity: 0.4;
+    z-index: -1;
 }
 
 .main-header {
     height: 100vh;
     padding: 0 0 0 10px;
-    
 }
+
 .wrapper {
     position: relative;
     display: -webkit-box;
-    
     display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-    
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
@@ -61,22 +59,24 @@ body {
 
 .conteiner {
     padding: 0 10vw;
-    width:100%;
+    width: 100%;
     position: absolute;
 }
 
-.analysis_section{
-    height:90vh;
+.analysis_section {
+    height: 90vh;
 }
 
 .main-title {
-    
     font-size: calc(var(--index) * 5);
     position: relative;
     width: min-content;
     bottom: -15vh;
     right: -10vw;
     line-height: 1.1;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 
@@ -87,31 +87,82 @@ body {
 .btn-description {
     position: absolute;
     box-sizing: border-box;
-    position: absolute;
+    cursor: pointer;
     width: 12vw;
     height: 5.8vh;
     left: 51vw;
     top: 75vh;
     border: 2px solid #EAE9E5;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 
 
+
+
+
+
 .font-weight-bold-description {
-    width: 70px;
-    height: 24px;
-    left: 533px;
-    top: 683px;
-    font-family: 'Igra Sans', sans-serif;
+    position: relative;
+    font-size: calc(var(--index) * 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'igra-sans-c', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px;
+    color: #EAE9E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+    .font-weight-bold-description::before {
+        display: block;
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        margin-left: -100px;
+        padding: 100px;
+        width: 200px;
+        font-size: .8em;
+        color: #2A2539;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        background-color: #EFC8C8;
+        border-radius: 5px;
+        content: attr(data-title);
+        box-sizing: border-box;
+        transition: opacity .7s;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .font-weight-bold-description:hover::before {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.font-weight-bold-action {
+    font-size: calc(var(--index) * 5);
+    width: 53px;
+    height: 24vh;
+    font-family: 'igra-sans-c', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 24px;
-    
-
-
-    color: rgba(234, 233, 229, 0.9);
+    color: #2A2539;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .btn-action {
@@ -123,16 +174,13 @@ body {
     background: #EAE9E5;
     border-radius: 5px;
     border: none;
-    font: inherit;
-
+    color: #2A2539;
 }
 
-.welcome-section{
-    color:white;
-    background-color:black;
-    width:100%;
-    height:1000px;
-    
+.welcome-section {
+    color: white;
+    width: 100%;
+    height: 425px;
 }
 
 .content-box {
@@ -141,28 +189,26 @@ body {
     font-family: igra-sans-c;
 }
 
-.content-text{
-    
+.content-text {
     width: 50vw;
     height: 100%;
 }
 
     .content-text h3 {
+        font-size: calc(var(--index) * 5);
         font-size: 25px;
         line-height: 1.8;
-        
     }
 
     .content-text h4 {
+        font-size: calc(var(--index) * 5);
         font-size: 15px;
         padding-top: 20px;
         line-height: 1.9;
-        
     }
 
 
 .keyboard-effect-text {
-    background-color: #2A2539;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,25 +222,23 @@ body {
     justify-content: center;
 }
 
-.keyboard-effect-text-wrapper .static-text {
-    margin-right: -19px;
-    margin-top: 3px;
-    color: #EAE9E5;
-    font-size: 30px;
-}
+    .keyboard-effect-text-wrapper .static-text {
+        margin-right: -19px;
+        margin-top: 3px;
+        color: #EAE9E5;
+        font-size: 30px;
+    }
 
-.keyboard-effect-text-wrapper .dynamic-texts {
-        
-    height: 90px;
-    line-height: 90px;
-    overflow: hidden;
-}
+    .keyboard-effect-text-wrapper .dynamic-texts {
+        height: 90px;
+        line-height: 90px;
+        overflow: hidden;
+    }
 
 .dynamic-texts li {
     list-style: none;
     color: #FC6D6D;
     font-size: 30px;
-    
     position: relative;
     top: 10px;
     animation: slide 5s steps(4) infinite;
@@ -209,7 +253,6 @@ body {
 .dynamic-texts li span {
     position: relative;
     margin: 5px 0;
-    
 }
 
 
@@ -248,9 +291,225 @@ body {
 }
 
 
+.university-filter-wrapper {
+    padding-inline: 100px;
+    font-family: igra-sans-c;
+}
+
+.university-filter-main-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(var(--index) * 1.4);
+}
+
+.university-filter-conteiner {
+    display: flex;
+    justify-content: space-around;
+    padding: 10vh;
+}
+
+#block-styles {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #EAE9E5;
+    height: 30vh;
+    width: 20vw;
+    display: flex;
+    border-radius: 10px;
+}
+
+.university-link {
+    position: relative;
+    overflow: hidden;
+    height: 30vh;
+    width: 20vw;
+    display: flex;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.university-block1 {
+    background-image: url("../images/Satpaev_Kazakh_National_Technical_University_in_Almaty.jpeg");
+    background-size: 400px;
+    opacity: 0.9;
+}
+
+.university-block2 {
+    background-image: url("../images/qozogistonda-oqish-обучение-в-кахастане12_286872sq.jpg");
+    background-size: 400px;
+    opacity: 0.9;
+}
+
+.university-block3 {
+    background-image: url("../images/Здание_Международного_Университета_Информационных_Технологий.jpg");
+    background-size: 400px;
+    opacity: 0.9;
+}
+
+.university-block4 {
+    background-image: url("../images/NU_Building.jpg");
+    background-size: 400px;
+    opacity: 0.9;
+}
+
+.university-block5 {
+    background-image: url("../images/kimep-almaty.jpg");
+    background-size: 400px;
+    opacity: 0.9;
+}
+
+.university-block6 {
+    background-image: url("../images/Med.jpeg");
+    background-size: 400px;
+    opacity: 0.9;
+}
+
+.details-wrapper {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.details {
+    position: relative;
+    width: 50%;
+    min-width: 150px;
+    height: 100%;
+    background-color: rgba(71,74,89,0.9);
+    display: flex;
+    -webkit-box-flex: 1;
+    transition: .8s;
+}
+
+
+.university-item-content1 {
+    text-align: center;
+    align-content: center;
+    font-size: 15px;
+    width: 100%;
+    padding: 20px;
+}
+
+.university-item-content2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    align-content: center;
+    font-size: 15px;
+    width: 100%;
+    padding: 15px;
+    line-height: 1.5;
+}
 
 
 
- 
+.university-item-content3 {
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    padding: 20px;
+}
 
 
+
+.university-item-content1 .full-university-title {
+    align-content: center;
+    font-size: 12px;
+    position: relative;
+    top: 10px;
+}
+
+.university-item-content3 .full-university-title {
+    align-content: center;
+    font-size: 12px;
+    position: relative;
+    top: 5px;
+}
+
+
+.specialties-wrapper {
+    padding-inline: 100px;
+    padding-block: 60px;
+    font-family: igra-sans-c;
+}
+
+.specialties-wrapper {
+    position: relative;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    padding: 50px 10px;
+}
+
+.specialties-conteiner {
+    padding: 10vh 0 10vw;
+    width: 100%;
+    position: relative;
+}
+
+.main-text-conteiner {
+    position: relative;
+    width: 50vw;
+    height: 100%;
+    left: 50vw;
+}
+
+
+
+.specialties-main-title {
+    font-size: calc(var(--index) * 1.8);
+    font-weight: 900;
+    position: relative;
+    width: min-content;
+    line-height: 1.1;
+}
+
+.specialties-main-pretitle {
+    padding-top: 3vh;
+    font-size: calc(var(--index) * 0.7);
+    line-height: 2;
+    width: 30vw;
+}
+
+.specialties-main-img {
+    top: 10vh;
+    left: 20vw;
+    position: absolute;
+    height: calc(var(--index) * 15);
+    width: calc(var(--index) * 15);
+}
+
+.specialties-btn-action {
+    display: inline-block;
+    position: relative;
+    padding: 1.2vh 1.2vw;
+    font-size: 15px;
+    font-family: 'igra-sans-c', sans-serif;
+    text-decoration: none;
+    left: 50vw;
+    top: 5vh;
+    display: inline-flex;
+    background: #EAE9E5;
+    border-radius: 5px;
+    border: none;
+    color: #2A2539;
+}
+
+
+
+.full-university-title1 {
+    position: relative;
+    align-content: center;
+    font-size: 14px;
+    position: relative;
+    top: 10px;
+}

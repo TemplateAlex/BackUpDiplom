@@ -22,6 +22,7 @@ namespace Diplomka.Pages
         }
         public List<SelectListItem> Options { get; set; }
         public string SelectedSubject { get; set; }
+        public string Points { get; set; }
         public void OnGet()
         {
             Options = _context.Subjects.Select(a =>
@@ -34,9 +35,7 @@ namespace Diplomka.Pages
         
         public IActionResult OnPost(string SelectedSubject, string points)
         {
-            this.SelectedSubject = SelectedSubject;
-            OnGet();
-            return Page();
+            return RedirectToPage("AnalyzePage", new { number = SelectedSubject, points = points });
         }
     }
 }

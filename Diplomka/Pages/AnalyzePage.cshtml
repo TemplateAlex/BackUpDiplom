@@ -15,39 +15,47 @@
             </div>
         </div>
     </div>
+    @if(Model.entPredictions.Count > 0) {
     <div class="row">
         <div class="col-6">
-        @foreach (var model in Model.entPredictions)
-        {
-            <div class="row d-flex bgCream mt-5 ms-3">
-                <div class="code-container">
-                    <div class="code-container__wrapper container-fluid d-flex">
-                        <p class="nameFont"><strong>@(model.CodeName)</strong></p>
-                        <p class="nameFont ms-2"><strong>@(model.Description)</strong></p>
-                    </div>
-                </div>
-                <div class="prediction-container">
-                    <div class="prediction-container__wrapper">
-                        <div class="progress-container">
-                            <svg class="progress-ring" height="120" width="120">
-                                <circle class="progress-ring__circle" stroke="#854442" stroke-width="4" cx="60" cy="60" r="52" fill="transparent"></circle>
-                            </svg>
-                        </div>
-                        <div class="prediction-number container">
-                            <p>@(model.Prediction)%</p>
+            @foreach (var model in Model.entPredictions)
+            {
+                <div class="row d-flex bgCream mt-5 ms-3 list-container">
+                    <div class="code-container">
+                        <div class="code-container__wrapper container-fluid d-flex">
+                            <p class="nameFont"><strong>@(model.CodeName)</strong></p>
+                            <p class="nameFont ms-2"><strong>@(model.Description)</strong></p>
                         </div>
                     </div>
+                    <div class="prediction-container">
+                        <div class="prediction-container__wrapper">
+                            <div class="progress-container">
+                                <svg class="progress-ring" height="120" width="120">
+                                    <circle class="progress-ring__circle" stroke="#854442" stroke-width="4" cx="60" cy="60" r="52" fill="transparent"></circle>
+                                </svg>
+                            </div>
+                            <div class="prediction-number container">
+                                <p>@(model.Prediction)%</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
+        <div class="col-6">
+            @foreach (var item in Model.UniversitiesNames)
+            {
+                <div class="row d-flex justify-content-center align-items-center bgCream mt-5 ms-3 list-container">
+                    <p>@(item)</p>
+                </div>
+            }
+        </div>
     </div>
-    <div class="col-6">
-
-    </div>
-</div>
-
-<ul>
-    @foreach(var model in Model.entPredictions) {
-        <li>CodeName: @(model.CodeName) Description: @(model.Description) Predictions: @(model.Prediction)</li>
     }
-</ul>
+    else {
+        <div class="row">
+            <div class="container-fluid d-flex justify-content-center mt-5">
+                <h1 style="color:white">Невозможно поступить на грант.</h1>
+            </div>
+        </div>
+    }

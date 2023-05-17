@@ -12,23 +12,6 @@
 }   
 
 @section Scripts{
-    <script>
-        $(document).ready(function() {
-            $("#btnId").click(function () {
-                var dropdownListValue = document.getElementById("input1").value;
-                var pointsValue = document.getElementById("input2").value;
-                $.ajax({
-                    type: 'GET',
-                    data: {value: dropdownListValue, points: pointsValue},
-                    url: '@Url.Page("index", "ajax")',
-                    success: function(result) {
-                        document.getElementById("form-box").remove();
-                        console.log(result);
-                    }
-                });
-            });
-        });
-    </script>
     <script src="~/js/MainPage.js"></script>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -36,87 +19,181 @@
 
     
 
-    <div class="wrapper">
-            
-            <header class="analysis_section">
-                <img class="main_img" src="images/Безымянный-2.png" alt="Alt">
-                <div class="conteiner">
-                    <div class="main-header">
-                        <div>
-                            <h1 class="main-title">Анализ ваших результатов</h1>
-
-                            <a href="" class="btn-description">
-                            <span class="font-weight-bold-description" style="font-family: igra-sans-c;"> Как это работает? </span>
-                            </a>
-                            <button href="" class="btn-action">
-                            <span class="font-weight-bold-description" style="color:black; font-family: igra-sans-c;"> Начать Анализ </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="form-box-wrapper">
-                <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
-                <div class="form-box">
-
-                    <form id="form-box">
-
-                        <div>
-
-                            <select id="input1" asp-for="SelectedSubject" asp-items="Model.Options"> <option value="">Выберите предмет 1 </option> </select>
-                        </div>
-                        <div>
-
-                            <input type="number" name="points" id="input2" placeholder="Введите кол-во баллов*" />
-                        </div>
-                        <div style="margin-top: 150px">
-                            <button type="button" class="btn btn-outline-dark" id="btnId">Рассчитать</button>
-                        </div>
-
-                    </form>
+<div class="wrapper">        
+    <header class="analysis_section">
+        <img class="main_img" src="images/Безымянный-2.png" alt="Alt">
+        <div class="conteiner">
+            <div class="main-header">
+                <div>
+                    <h1 class="main-title">Анализ ваших результатов</h1>
+                    <a href="" class="btn-description">
+                        <span class="font-weight-bold-description" style="font-family: igra-sans-c;"> Как это работает? </span>
+                    </a>
+                    <button href="" class="btn-action">
+                        <span class="font-weight-bold-description" style="color:black; font-family: igra-sans-c;"> Начать Анализ </span>
+                    </button>
                 </div>
             </div>
+        </div>
 
-
-            </header>
-
-            <div class="keyboard-effect-text">
-                <div class="keyboard-effect-text-wrapper">
-                    <div class="static-text">
-                        <span>I`m a</span>
+        <div class="form-box-wrapper">
+            <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+            <div class="form-box">
+                <form id="form-box" method="post">
+                    <div>
+                        <select id="input1" asp-for="SelectedSubject" asp-items="Model.Options"> <option value="">Выберите предмет 1 </option> </select>
                     </div>
-                    <ul class="dynamic-texts">
-                        <li><span>Doctor</span></li>
-                        <li><span>Developer</span></li>
-                        <li><span>Designer</span></li>
-                        <li><span>Teacher</span></li>
+                    <div>
+                        <input type="number" name="points" id="input2" placeholder="Введите кол-во баллов*" />
+                    </div>
+                    <div style="margin-top: 150px">
+                        <button type="submit" class="btn btn-outline-dark" id="btnId">Рассчитать</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <div class="keyboard-effect-text">
+        <div class="keyboard-effect-text-wrapper">
+            <div class="static-text">
+                <span>I`m a</span>
+            </div>
+            <ul class="dynamic-texts">
+                <li><span>Doctor</span></li>
+                <li><span>Developer</span></li>
+                <li><span>Designer</span></li>
+                <li><span>Teacher</span></li>
                         
-                    </ul>
-                </div>
-            </div>
-
-            <div class="welcome-section">
-                <div class="content-box">
-                   <div class="content-text">
-                        <h3>** ! * ** * ** ****** ************ ******** *** ************ *** *** ***** *** ********* **********.</h3>
-                        <h4>* ** **** ** ****** **** **********, ***** **********, 
-                            ********** ************, *** *********** ************* ** **** ** 
-                            **** ***** *** *** ****** *****. * ****** * ** ****** ** ***** ** *** **** 
-                            ****** ** ******** *** ***** ** ****** ****** ** ********** ********** ** ***** 
-                            ******** ************ ** * ******** ******. * ******* ** ******** ***** ****** 
-                            **** **** *** ******* *** ***** ** *** ******.</h4>
-                   </div>
-                </div>
-                                                       
-            </div>
+            </ul>
+        </div>
     </div>
 
-   
 
-    
+    <div class="welcome-section">
+        <div class="content-box">
+            <div class="content-text">
+                <h3>Привет! Я твой персональный помощник. Я помогу тебе определиться с университетом, в котором ты будешь учиться и получать профессиональные знания.</h3>
+                <h4>Я помогу тебе понять, насколько хорошо ты сдал Единое Национальное Тестирование, и помогу проанализировать твой результат. Я покажу тебе университеты и профессии, на которые ты можешь претендовать в конкурсе образовательных грантов.</h4>
+            </div>
+        </div>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Welcome page of asp.net</a>.</p>
+    <div class="university-filter-wrapper">
+        <div class="university-filter-main-title">
+            <span>Университеты</span>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item  active">
+                    <div class="university-filter-conteiner">
+                        <div id="block-styles" class="university-block1">
+                            <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B8%D0%B9_%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%B8%D1%81%D1%81%D0%BB%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82_%D0%B8%D0%BC%D0%B5%D0%BD%D0%B8_%D0%9A._%D0%98._%D0%A1%D0%B0%D1%82%D0%BF%D0%B0%D0%B5%D0%B2%D0%B0" class="university-link"></a>
+                            <div class="university-block-wrapper">
+                                <div class="details-wrapper">
+                                    <div class="details">
+                                        <div class="university-item-content1">
+                                            <a>Satbayev University</a>
+                                            <span class="full-university-title">КазНИТУ им. К.И.Сатпаева</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="block-styles" class="university-block2">
+                            <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B8%D0%B9_%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82" class="university-link"></a>
+                            <div class="university-block-wrapper">
+                                <div class="details-wrapper">
+                                    <div class="details">
+                                        <div class="university-item-content2">
+                                            <a>Al-Farabi Kazakh National University</a>
+                                            <span class="full-university-title">КазНУ им.Аль-Фараби</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="block-styles" class="university-block3">
+                            <a href="https://encyclopaedia.bid/%D0%B2%D0%B8%D0%BA%D0%B8%D0%BF%D0%B5%D0%B4%D0%B8%D1%8F/%D0%9C%D0%A3%D0%98%D0%A2" class="university-link"></a>
+                            <div class="university-block-wrapper">
+                                <div class="details-wrapper">
+                                    <div class="details">
+                                        <div class="university-item-content3">
+                                            <a>International Information Technology University</a>
+                                            <span class="full-university-title">МУИТ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="university-filter-conteiner">
+                        <div id="block-styles" class="university-block4">
+                            <a href="https://ru.wikipedia.org/wiki/%D0%9D%D0%B0%D0%B7%D0%B0%D1%80%D0%B1%D0%B0%D0%B5%D0%B2_%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82" class="university-link"></a>
+                            <div class="university-block-wrapper">
+                                 <div class="details-wrapper">
+                                     <div class="details">
+                                         <div class="university-item-content1">
+                                             <a>Nazarbayev University</a>
+                                             <span class="full-university-title">Назарбаев Университет</span>
+                                         </div>
+                                     </div>
+                                 </div>
+                            </div>
+                        </div>
+                        <div id="block-styles" class="university-block5">
+                            <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%98%D0%9C%D0%AD%D0%9F_(%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82)" class="university-link"></a>
+                            <div class="university-block-wrapper">
+                                <div class="details-wrapper">
+                                    <div class="details">
+                                        <div class="university-item-content2">
+                                            <a>KIMEP University</a>
+                                            <span class="full-university-title1">Казахстанский Институт Менеджмента, Экономики и Прогнозирования</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="block-styles" class="university-block6">
+                            <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%B8%D0%B9_%D0%BD%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9_%D0%BC%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9_%D1%83%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82" class="university-link"></a>
+                            <div class="university-block-wrapper">
+                                <div class="details-wrapper">
+                                    <div class="details">
+                                        <div class="university-item-content3">
+                                            <a>Asfendiyarov national medical university</a>
+                                            <span class="full-university-title">КазНМУ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+
+
+
+    <div class="specialties-wrapper">
+        <div class="specialties-conteiner">
+            <img class="specialties-main-img" src="images/Безымянный-3.png" alt="Alt" />
+            <div class="main-text-conteiner">
+                <h2 class="specialties-main-title">Список специальностей</h2>
+                <h3 class="specialties-main-pretitle">Посмотрите на специальности, которые подходят к твоей комбинации предметов, сдаваемых тобой на ЕНТ</h3>
+            </div>
+            <a href="https://zstar.kz/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/170-%D0%BA%D0%B0%D0%BA%D0%B8%D0%B5-%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D0%BF%D1%80%D0%B5%D0%B4%D0%BC%D0%B5%D1%82%D1%8B-%D1%81%D0%B4%D0%B0%D0%B2%D0%B0%D1%82%D1%8C-%D0%BD%D0%B0-%D0%B5%D0%BD%D1%82.html" class="specialties-btn-action">
+                Перейти
+            </a>
+        </div>
+    </div>
 </div>
-<a asp-page="TmpPage">Проверка</a>

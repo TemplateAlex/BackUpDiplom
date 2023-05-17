@@ -21,6 +21,8 @@ namespace Diplomka.Pages
 
         public List<ENTPrediction> entPredictions = new List<ENTPrediction>();
 
+        public List<string> UniversitiesNames = new List<string>();
+
         public string SubjectName { get; set; }
 
         public AnalyzePageModel(DiplomDBContext context)
@@ -90,6 +92,11 @@ namespace Diplomka.Pages
                 entPredictions.Sort(delegate (ENTPrediction x, ENTPrediction y) {
                     return y.Prediction.CompareTo(x.Prediction);
                 });
+
+                foreach(var entPrediction in entPredictions)
+                {
+                    UniversitiesNames.Add(GetUniversityByCodeName(entPrediction.CodeName));
+                }
             }
         }
 
@@ -120,6 +127,34 @@ namespace Diplomka.Pages
             {
                 sqlConnection.Open();
                 SqlCommand command = new SqlCommand(query, sqlConnection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    if (reader.Read())
+                    {
+                        return reader.GetString(0);
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private string GetUniversityByCodeName(string codeName)
+        {
+            StringBuilder sbQeury = new StringBuilder();
+            sbQeury.Append("SELECT UniversityName " +
+                           "FROM Universities " +
+                           "WHERE Id IN (SELECT UniversityId" +
+                           "             FROM UniversityEducations" +
+                           "             WHERE EducationId = (SELECT Id" +
+                           "                                  FROM EducationPrCode" +
+                           $"                                  WHERE CodeName = '{codeName}'));");
+            using (SqlConnection sqlConnection = new SqlConnection(this._dbConnection))
+            {
+                sqlConnection.Open();
+                SqlCommand command = new SqlCommand(sbQeury.ToString(), sqlConnection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)

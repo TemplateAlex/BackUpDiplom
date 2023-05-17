@@ -73,3 +73,13 @@ body {
     transform: rotate(-90deg);
 }
 
+.page-link {
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.list-container {
+    height: 186px;
+    border-radius: 5%;
+}
+
