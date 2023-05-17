@@ -1,10 +1,10 @@
-using Diplomka.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.SqlClient;
-using Newtonsoft.Json.Linq;
-using System.Text;
-
+using Diplomka.Models; 
+using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc.RazorPages; 
+using Microsoft.Data.SqlClient; 
+using Newtonsoft.Json.Linq; 
+using System.Text; 
+ 
 namespace Diplomka.Pages
 {
     public class AnalyzePageModel : PageModel
@@ -74,11 +74,11 @@ namespace Diplomka.Pages
                             prediction = 100;
                         }
 
-                        if (prediction != 0 && entPredictions.Count < 5) 
+                        if (prediction != 0 && entPredictions.Count < 5)
                         {
                             entPredictions.Add(new ENTPrediction() { CodeName = codeName, Description = description, Prediction = prediction });
                         }
-                     
+
                     }
                 }
                 reader.Close();
@@ -114,17 +114,17 @@ namespace Diplomka.Pages
             return point;
         }
 
-        private string GetSubjectByNumber(string query) 
+        private string GetSubjectByNumber(string query)
         {
-            using (SqlConnection sqlConnection = new SqlConnection(this._dbConnection)) 
+            using (SqlConnection sqlConnection = new SqlConnection(this._dbConnection))
             {
                 sqlConnection.Open();
                 SqlCommand command = new SqlCommand(query, sqlConnection);
                 SqlDataReader reader = command.ExecuteReader();
 
-                if (reader.HasRows) 
+                if (reader.HasRows)
                 {
-                    if (reader.Read()) 
+                    if (reader.Read())
                     {
                         return reader.GetString(0);
                     }
@@ -135,7 +135,7 @@ namespace Diplomka.Pages
         }
     }
 
-    public class ENTPrediction 
+    public class ENTPrediction
     {
         public string CodeName { get; set; }
         public string Description { get; set; }

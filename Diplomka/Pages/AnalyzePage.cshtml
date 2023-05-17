@@ -8,15 +8,15 @@
     <script src="~/js/CircleProgressBar.js"></script>
 }
 
-<div class="row">
-    <div class="subject-container container-fluid d-flex justify-content-center">
-        <div class="subject-container__wrapper d-flex justify-content-center align-items-center">
-            <p class="subject-name nameFont">@Model.SubjectName</p>
+    <div class="row">
+        <div class="subject-container container-fluid d-flex justify-content-center">
+            <div class="subject-container__wrapper d-flex justify-content-center align-items-center">
+                <p class="subject-name nameFont">@Model.SubjectName</p>
+            </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-6">
+    <div class="row">
+        <div class="col-6">
         @foreach (var model in Model.entPredictions)
         {
             <div class="row d-flex bgCream mt-5 ms-3">

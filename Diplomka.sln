@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PDFReaderClassLibrary", "PD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonCaller", "PythonCaller\PythonCaller.csproj", "{9B37A436-F72B-498B-8F9B-908AB2C92B5E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncrypDecryp", "EncrypDecryp\EncrypDecryp.csproj", "{3666C735-EDC8-40F1-A7AB-9725F9415710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptorLib", "EncrypDecryp\EncryptorLib.csproj", "{3666C735-EDC8-40F1-A7AB-9725F9415710}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

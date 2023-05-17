@@ -4,22 +4,26 @@ using Diplomka.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
+using EncryptorLib;
 
 namespace Diplomka.Pages
 {
     public class LogAndRegPageModel : PageModel
     {
         private readonly DiplomDBContext _context;
+        public LogAndRegPageModel(DiplomDBContext context)
+        {
+            this._context = context;
+            this.md5proxy = new md5Proxy();
+        }
+
+        private md5Proxy md5proxy;
         public string TypePage { get; set; }
         public bool isErrExistUser { get; set; }
         public bool isErrPsswdEqual { get; set; }
         public bool isErrUserLog { get; set; }
         public bool isErrRole { get; set; }
-
-        public LogAndRegPageModel(DiplomDBContext context) 
-        {
-            this._context = context;
-        }
+        
         public IActionResult OnGet(string namePage) 
         {
             if (namePage == "Log" || namePage == "Reg" || namePage == "Forget")
@@ -27,6 +31,7 @@ namespace Diplomka.Pages
                 TypePage = namePage;
                 return Page();
             }
+            if (HttpContext.Session.Keys.Count() != 0) return RedirectToPage("Index");
             else 
             {
                 return RedirectToPage("Index");
@@ -34,7 +39,8 @@ namespace Diplomka.Pages
         }
         public IActionResult OnPostLog(string loginLog, string psswdLog) 
         {
-            var auth = _context.Authentications.FirstOrDefault(a => a.LoginName == loginLog && a.Password == psswdLog);
+            string hashpassword = md5proxy.HashPassword(psswdLog);
+            var auth = _context.Authentications.FirstOrDefault(a => a.LoginName == loginLog && a.Password == hashpassword);
 
             if (auth != null) 
             {
@@ -52,24 +58,26 @@ namespace Diplomka.Pages
         public async Task<IActionResult> OnPostReg(string nameReg, string surnameReg, string emailReg, string loginReg, string psswdReg, string rpsswdReg) 
         {
             var auth = _context.Authentications.FirstOrDefault(a => a.LoginName == loginReg);
-            if (string.IsNullOrEmpty(psswdReg))
+            string hashpassword = md5proxy.HashPassword(psswdReg);
+            if (hashpassword == null)
             {
-                Console.WriteLine("ne proverish");
+                Console.WriteLine("password not valid");
                 return Page();
             }
             if (psswdReg.Equals(rpsswdReg))
             {
-                string patternIdIncoming = @"{\d{1}}";
+                string patternIdIncoming = @"[0-9]+";
                 Regex regex = new Regex(patternIdIncoming);
                 Match match = regex.Match(nameReg);
                 if (string.IsNullOrEmpty(nameReg) || match.Success)
                 {
+                    Console.WriteLine("переделывайте имя");
                     return Page();
                 }
                 match = regex.Match(surnameReg);
                 if (string.IsNullOrEmpty(surnameReg)|| match.Success)
                 {
-                    Console.WriteLine("переделывай фамилию");
+                    Console.WriteLine("переделывайте фамилию");
                     return Page();
                 }
                 patternIdIncoming = @"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|""(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*"")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
@@ -82,15 +90,10 @@ namespace Diplomka.Pages
                 }
                 if (string.IsNullOrEmpty(loginReg))
                 {
-                    Console.WriteLine("заполни поле");
+                    Console.WriteLine("заполните поле");
                     return Page();
                 }
-                if(string.IsNullOrEmpty(psswdReg))
-                {
-                    Console.WriteLine("заполни поле");
-                    return Page();
-                }
-                    //красава, авторизуем тебя
+                    //authorizing
                 if (auth == null)
                 {
                     string authenId = Guid.NewGuid().ToString().ToUpper();
@@ -101,7 +104,7 @@ namespace Diplomka.Pages
                     authen.Surname = surnameReg;
                     authen.Email = emailReg;
                     authen.LoginName = loginReg;
-                    authen.Password = psswdReg;
+                    authen.Password = hashpassword;
                     user.Id = Guid.NewGuid().ToString().ToUpper();
                     user.AuthenticationId = authenId;
                     user.RoleId = _context.Roles.FirstOrDefault(r => r.RoleName == "User").Id;
@@ -131,9 +134,7 @@ namespace Diplomka.Pages
 
             if (userAuth != null) 
             {
-
-            }
-            /*var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
+                /*var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
 
             if (urlPageLog != null) 
             {
@@ -141,6 +142,7 @@ namespace Diplomka.Pages
             }
 
             return RedirectToPage("Index"); */
+            }
 
             return Page();
         }
