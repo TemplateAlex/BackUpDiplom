@@ -1,0 +1,75 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Send+Flowers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+
+/*Default settings*/
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+    background-color: #2A2539;
+}
+
+/*Create glued footer*/
+.progressBar {
+    height: 5px;
+    position: fixed;
+    width: 0%;
+    box-shadow: 0 0 1.5px rgb(121, 68, 59);
+    background-color: rgb(121, 68, 59);
+    top: 100px;
+}
+
+.main-site__wrapper {
+    min-height: 100vh;
+}
+
+.footer, .header {
+    height: 100px;
+}
+
+.main {
+    flex: 1 1 auto;
+    padding: 10px, 5px, 5px, 5px;
+}
+
+.subject-container__wrapper {
+    background-color: #FFE9DC;
+    width: 50%;
+    height: 250px;
+    border-radius: 10%;
+}
+
+.subject-name {
+    font-size: 54px;
+}
+
+.nameFont {
+    font-family: 'Sedgwick Ave Display', cursive;
+}
+
+.bgCream {
+    background-color: #FFE9DC;
+}
+
+.prediction-container__wrapper {
+    position: relative;
+}
+
+.prediction-number {
+    position: absolute;
+    top: 50px;
+    left: 20px;
+}
+
+.progress-ring__circle {
+    transform-origin:center;
+    transform: rotate(-90deg);
+}
+

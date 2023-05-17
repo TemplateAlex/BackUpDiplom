@@ -1,0 +1,53 @@
+﻿@page "{number}/{points}"
+@model Diplomka.Pages.AnalyzePageModel
+@{
+    Layout = "/Pages/Shared/_LayoutForAnalyzePage.cshtml";
+}
+
+@section Scripts{
+    <script src="~/js/CircleProgressBar.js"></script>
+}
+
+<div class="row">
+    <div class="subject-container container-fluid d-flex justify-content-center">
+        <div class="subject-container__wrapper d-flex justify-content-center align-items-center">
+            <p class="subject-name nameFont">@Model.SubjectName</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        @foreach (var model in Model.entPredictions)
+        {
+            <div class="row d-flex bgCream mt-5 ms-3">
+                <div class="code-container">
+                    <div class="code-container__wrapper container-fluid d-flex">
+                        <p class="nameFont"><strong>@(model.CodeName)</strong></p>
+                        <p class="nameFont ms-2"><strong>@(model.Description)</strong></p>
+                    </div>
+                </div>
+                <div class="prediction-container">
+                    <div class="prediction-container__wrapper">
+                        <div class="progress-container">
+                            <svg class="progress-ring" height="120" width="120">
+                                <circle class="progress-ring__circle" stroke="#854442" stroke-width="4" cx="60" cy="60" r="52" fill="transparent"></circle>
+                            </svg>
+                        </div>
+                        <div class="prediction-number container">
+                            <p>@(model.Prediction)%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-6">
+
+    </div>
+</div>
+
+<ul>
+    @foreach(var model in Model.entPredictions) {
+        <li>CodeName: @(model.CodeName) Description: @(model.Description) Predictions: @(model.Prediction)</li>
+    }
+</ul>
