@@ -29,9 +29,12 @@
                     <a href="" class="btn-description">
                         <span class="font-weight-bold-description" style="font-family: igra-sans-c;"> Как это работает? </span>
                     </a>
-                    <button href="" class="btn-action">
-                        <span class="font-weight-bold-description" style="color:black; font-family: igra-sans-c;"> Начать Анализ </span>
+                    @if (HttpContext.Session.GetString("role") == "Admin" || HttpContext.Session.GetString("role") == "User")
+                    {
+                        <button href="" class="btn-action">
+                            <span class="font-weight-bold-description" style="color:black; font-family: igra-sans-c;"> Начать Анализ </span>
                     </button>
+                    }
                 </div>
             </div>
         </div>
@@ -41,7 +44,7 @@
             <div class="form-box">
                 <form id="form-box" method="post">
                     <div>
-                        <select id="input1" asp-for="SelectedSubject" asp-items="Model.Options"> <option value="">Выберите предмет 1 </option> </select>
+                        <select id="input1" asp-for="SelectedSubject" asp-items="Model.Options"> <option value="">Выберите профильные предметы  </option> </select>
                     </div>
                     <div>
                         <input type="number" name="points" id="input2" placeholder="Введите кол-во баллов*" />
