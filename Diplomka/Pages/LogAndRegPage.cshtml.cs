@@ -31,8 +31,16 @@ namespace Diplomka.Pages
                 TypePage = namePage;
                 return Page();
             }
-            if (HttpContext.Session.Keys.Count() != 0) return RedirectToPage("Index");
-            else 
+            if (namePage == "Out")
+            {
+                TypePage = namePage;
+                HttpContext.Session.Clear();
+            }
+            if (HttpContext.Session.Keys.Count() != 0) {
+                return RedirectToPage("Index");
+                
+            }
+            else
             {
                 return RedirectToPage("Index");
             }
@@ -46,7 +54,6 @@ namespace Diplomka.Pages
             {
                 string roleId = _context.Users.FirstOrDefault(u => u.AuthenticationId == auth.Id).RoleId;
                 string roleName = _context.Roles.FirstOrDefault(r => r.Id == roleId).RoleName;
-
                 HttpContext.Session.SetString("Login", loginLog);
                 HttpContext.Session.SetString("role", roleName);
                 return RedirectToPage("Index");
@@ -143,8 +150,12 @@ namespace Diplomka.Pages
 
             return RedirectToPage("Index"); */
             }
-
             return Page();
         }
+        /*public IActionResult OnPostOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToPage("Index");
+        }*/
     }
 }

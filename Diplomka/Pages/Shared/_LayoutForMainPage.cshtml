@@ -14,26 +14,62 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class=" collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto ">
-                    <li class="nav-item">
-                        <a class="nav-link mx-2 align-content-center active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Log">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Reg">Register</a>
-                    </li>
+                    @if (Context.Session.GetString("role") == "Admin")
+                    {
+                        <li class="nav-item"><strong class="nav-link mx-2 align-content-center active">(Админ) Kolyan Shevchenko</strong></li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 align-content-center active" aria-current="page" asp-page="Index">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="ProfilePage">Профиль</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="AdminPage">Панель администратора</a>
+                        </li>     
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Out">Выйти</a>
+                        </li>
+                        
+                    } 
+                    else if (Context.Session.GetString("role") == "User")
+                    {
+                        <li class="nav-item"><strong class="nav-link mx-2 align-content-center active">Клим Жуков</strong></li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 align-content-center active" aria-current="page" asp-page="Index">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="ProfilePage">Профиль</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Reg">Абитуриентам</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Out">Выйти</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 align-content-center active" aria-current="page" asp-page="Index">Главная</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Log">Войти</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" asp-page="LogAndRegPage" asp-route-namePage="Reg">Зарегистрироваться</a>
+                        </li>
+                    }
+
                     <li class="nav-item dropdown">
                         <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Company
+                            Компания
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Blog</a></li>
-                            <li><a class="dropdown-item" href="#">About Us</a></li>
-                            <li><a class="dropdown-item" href="#">Contact us</a></li>
+                            <li><a class="dropdown-item" href="#">Блог</a></li>
+                            <li><a class="dropdown-item" href="#">О нас</a></li>
+                            <li><a class="dropdown-item" href="#">Контакты</a></li>
                         </ul>
                     </li>
                 </ul>

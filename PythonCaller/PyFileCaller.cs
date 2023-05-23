@@ -10,7 +10,7 @@ namespace PythonCaller
 {
     public class PyFileCaller
     {
-        private static readonly string mainRoute = "D:\\Diplomka\\Diplomka\\Diplomka\\wwwroot\\PythonScripts";
+        private static readonly string mainRoute = "C:\\Users\\MohenTohen\\Desktop\\ZhukovPuchkov\\Diplomka\\wwwroot\\PythonScripts\\";
 
         public static void CallPythonFile()
         {

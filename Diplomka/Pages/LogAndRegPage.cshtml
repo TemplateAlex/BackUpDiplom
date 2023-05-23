@@ -94,7 +94,11 @@
                             </div>
                         </div>
                     </form>
-                } else {
+                } else if (Model.TypePage == "Out"){
+                    RedirectToPage("Index");
+                    }
+                else
+                {
                     <div class="d-flex justify-content-center container-fluid">
                         <p1 class="first_text">Забыли пароль?</p1>
                     </div>

@@ -76,7 +76,7 @@ namespace Diplomka.Pages
                             prediction = 100;
                         }
 
-                        if (prediction != 0 && entPredictions.Count < 5)
+                        if (prediction != 0 && entPredictions.Count < 15)
                         {
                             entPredictions.Add(new ENTPrediction() { CodeName = codeName, Description = description, Prediction = prediction });
                         }
@@ -93,7 +93,7 @@ namespace Diplomka.Pages
                     return y.Prediction.CompareTo(x.Prediction);
                 });
 
-                foreach(var entPrediction in entPredictions)
+                foreach (var entPrediction in entPredictions)
                 {
                     UniversitiesNames.Add(GetUniversityByCodeName(entPrediction.CodeName));
                 }
