@@ -1,0 +1,122 @@
+﻿@page
+@model Diplomka.Pages.AboutUsModel
+@{
+    Layout = "/Pages/Shared/_LayoutForAboutUs.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/StyleForAboutUs.css" type="text/css">
+}
+
+@section Scripts {
+    <script src="~/js/ScriptForUnline.js"></script>
+    <script src="~/js/ScriptForCarousel.js"></script>
+}
+
+<div class="wrapper-page_aboutme">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="underline-text__wrapper">
+            <h1 class="underline-text">Our CumTeam</h1>
+            <div class="unline unline__bistre"></div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+            <div class="slider__wrapper">
+                <div class="slider-screen__wrapper d-flex">
+                    <div class="slider-item slider-item__active">
+                        <div class="slider-item__image first-item"></div>
+                        <div class="slider-item__info">
+                            <h3>Vitalii</h3>
+                        </div>
+                    </div>
+                    <div class="slider-item">
+                        <div class="slider-item__image second-item"></div>
+                        <div class="slider-item__info">
+                            <h3>Temirlan</h3>
+                        </div>
+                    </div>
+                    <div class="slider-item">
+                        <div class="slider-item__image third-item"></div>
+                        <div class="slider-item__info">
+                            <h3>Alex</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="underline-text__wrapper">
+                    <h2 class="underline-text">About Cumteam</h2>
+                    <div class="unline unline__bistre"></div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat lorem et dui eleifend pharetra.
+                        Maecenas a nulla id dolor feugiat placerat. Nulla ornare libero leo, luctus accumsan lorem faucibus in.
+                        Sed semper massa elementum vestibulum tempus. Cras vehicula venenatis ante, sed ornare neque rutrum quis.
+                        Quisque pulvinar congue libero, eu convallis dolor. Curabitur nunc nulla, convallis eget eros ut, vestibulum tempus dui.
+                        Donec tincidunt felis at varius feugiat. Nunc sit amet ante non quam lobortis ullamcorper.
+                </p>
+                <p>
+                        Nunc auctor, odio in vestibulum pulvinar, leo tortor dignissim enim, interdum pretium odio sem quis justo.
+                        Proin commodo pulvinar dui, ut pretium nunc cursus id. Nam ac elit ut justo pretium tincidunt.
+                        Nunc ut odio efficitur, euismod libero sed, venenatis nunc.
+                        Donec vehicula, felis et maximus vulputate, eros enim mattis ex, at porta tellus ligula sed risus.
+                        Duis pulvinar mauris tellus, malesuada bibendum sem laoreet in. Proin dictum massa et tincidunt molestie.
+                        Duis quis accumsan massa. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+                        Quisque lobortis luctus commodo. Nam varius mauris nec venenatis lacinia.
+                        Suspendisse elementum diam in sem cursus, in tristique libero cursus.
+                        Aenean leo felis, scelerisque at ligula id, euismod consectetur erat.
+                        Donec lobortis erat in tortor ornare, sed porta odio convallis.
+                </p>
+                <p>
+                        Vivamus euismod felis a bibendum ultrices. Donec libero nibh, interdum at euismod sit amet, aliquam maximus odio.
+                        Nullam tortor tortor, facilisis id risus vel, aliquam commodo nulla. Sed lacinia dui mi.
+                        Cras eu augue id arcu blandit vehicula. Nunc sed bibendum sem, sit amet vehicula nunc.
+                        Donec venenatis tempus eros, nec gravida felis posuere ut. Nullam lacinia id risus sed laoreet.
+                        Donec et risus sagittis, vestibulum ex a, tristique elit.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row row-form">
+        <div class="background-form"></div>
+        <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+            <div class="underline-text__wrapper">
+                <h2 class="underline-text underline-text__white">Fill the form, to become our developer:</h2>
+                <div class="unline unline__bisque3"></div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="wrapper-form container-fluid d-flex justify-content-around-center">
+                <div class="form-container">
+                    <form method="post">
+                        <div class="form-group">
+                            <label for="authorNameId">Write your name:</label>
+                            <input type="text" class="form-control" id="authorNameId" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="emailId">Write your email:</label>
+                            <input type="email" class="form-control" id="emailId" aria-describedby="descEmail" name="email" required>
+                            <small id="descEmail">Write your email with domain</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="msgId">Write about you:</label>
+                            <textarea class="form-control" id="msgId" name="message" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateId">Choose your birthdate:</label>
+                            <input type="date" class="form-control" id="dateId" name="date" required>
+                        </div>
+                        <button class="btn btn-outline-dark mt-2" type="submit" asp-page-handler="SendForm">Send a form</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

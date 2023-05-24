@@ -9,6 +9,9 @@ using System.Text.RegularExpressions;
 using Microsoft.Data.SqlClient;
 using System.Text;
 using Diplomka.Models;
+using EncryptorLib;
+using System.Net.Mail;
+using System.Net;
 
 namespace Diplomka.Pages
 {
@@ -23,6 +26,8 @@ namespace Diplomka.Pages
         public List<ENTAVGPredictions> AVGPrediction { get; set; }
 
         public List<ENTMINPredictions> MINPrediction { get; set; }
+
+        public List<Resume> Resumes { get; set; }
 
         [BindProperty]
         public IFormFile? UploadFile { get; set; }
@@ -51,6 +56,11 @@ namespace Diplomka.Pages
             {
                 AVGPrediction = _context.ENTAVGPredictions.ToList();
                 MINPrediction = _context.ENTMINPredictions.ToList();
+            }
+
+            if (namePage == "Resumes")
+            {
+                Resumes = _context.Resumes.ToList();
             }
         }
 
@@ -120,6 +130,61 @@ namespace Diplomka.Pages
                 }
             }
             OnGet("FillPoints");
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostSendResumes()
+        {
+
+            StringBuilder sbMailMessage = new StringBuilder("<h2>Резюме потенциальных работников</h2><ul>");
+
+            List<Resume> resumes = _context.Resumes.ToList();
+
+            foreach(Resume resume in resumes)
+            {
+                sbMailMessage.Append($"<li>Имя: {resume.AuthorName}, Email: {resume.Email}</li>");
+            }
+
+            sbMailMessage.Append("</ul>");
+
+            List<HREmployees> hrEmployees = _context.HREmployees.ToList();
+
+            foreach(HREmployees hr in hrEmployees)
+            {
+                string? authId = _context.Users.FirstOrDefault(u => u.Id == hr.UserId).AuthenticationId;
+
+                string email = _context.Authentications.FirstOrDefault(a => a.Id == authId).Email;
+
+                if (email != null)
+                {
+                    MailAddress fromUser = new MailAddress("robotaident@yandex.ru", "Administrator");
+
+                    MailAddress toUser = new MailAddress(email);
+
+                    MailMessage mail = new MailMessage(fromUser, toUser);
+
+                    mail.Subject = "Новые резюме";
+                    mail.Body = sbMailMessage.ToString();
+                    mail.IsBodyHtml = true;
+                    SmtpClient client = new SmtpClient();
+                    client.Host = "smtp.yandex.ru";
+                    client.Port = 25;
+                    client.EnableSsl = true;
+                    client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    client.UseDefaultCredentials = false;
+                    client.Credentials = new NetworkCredential(fromUser.Address, "gzjonkouzkxyahje");
+
+                    await client.SendMailAsync(mail);
+                }
+            }
+            
+            foreach(Resume resume in resumes)
+            {
+                _context.Resumes.Remove(resume);
+                await _context.SaveChangesAsync();
+            }
+
+            OnGet("Resumes");
             return Page();
         }
 

@@ -9,5 +9,6 @@ namespace Diplomka.Models
         public string? AuthenticationId { get; set; }
         public Authentications? Authentications { get; set; }
         public Roles? Roles { get; set; }
+        public HREmployees? HREmployees { get; set; }
     }
 }

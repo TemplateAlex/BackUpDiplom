@@ -14,7 +14,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonCaller", "PythonCalle
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EncryptorLib", "EncrypDecryp\EncryptorLib.csproj", "{3666C735-EDC8-40F1-A7AB-9725F9415710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSVReader", "CSVReader\CSVReader.csproj", "{280DF5AA-B916-4F65-83DF-7043463517F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSVReader", "CSVReader\CSVReader.csproj", "{280DF5AA-B916-4F65-83DF-7043463517F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

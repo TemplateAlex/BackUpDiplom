@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using EncryptorLib;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
 
 namespace Diplomka.Pages
 {
@@ -134,28 +137,52 @@ namespace Diplomka.Pages
             return RedirectToPage("Index");
         }
 
-        public IActionResult OnPostForget(string emailForget) 
+        public async Task<IActionResult> OnPostForget(string emailForget) 
         {
 
             Authentications? userAuth = _context.Authentications.FirstOrDefault(a => a.Email == emailForget);
 
-            if (userAuth != null) 
+            if (userAuth != null)
             {
-                /*var urlPageLog = Url.Page("LogAndRegPage", new { namePage = "Log" });
+                string newPassword = CreateNewPassword();
+                MailAddress fromUser = new MailAddress("robotaident@yandex.ru", "Administrator");
 
-            if (urlPageLog != null) 
-            {
-                return Redirect(urlPageLog);
-            }
+                MailAddress toUser = new MailAddress(emailForget);
 
-            return RedirectToPage("Index"); */
+                MailMessage mail = new MailMessage(fromUser, toUser);
+
+                mail.Subject = "Дорогой пользователь, не забывай пароль";
+                mail.Body = $"<h2>Прошу запомнить ваш новый пароль!</h2><p>Ваш новый пароль: {newPassword}</p>";
+                mail.IsBodyHtml = true;
+
+                SmtpClient client = new SmtpClient();
+                client.Host = "smtp.yandex.ru";
+                client.Port = 25;
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(fromUser.Address, "gzjonkouzkxyahje");
+                await client.SendMailAsync(mail);
+
+                userAuth.Password = md5proxy.HashPassword(newPassword);
+                await _context.SaveChangesAsync();
+
+                return RedirectToPage("LogAndRegPage", new { namePage = "Log" });
             }
-            return Page();
+            return Page(); 
         }
-        /*public IActionResult OnPostOut()
+        
+        private string CreateNewPassword()
         {
-            HttpContext.Session.Clear();
-            return RedirectToPage("Index");
-        }*/
+            StringBuilder sbPassword = new StringBuilder();
+
+            for(int i = 0; i < 8; i++)
+            {
+                Random random = new Random();
+                sbPassword.Append((char)random.Next(35, 123));
+            }
+
+            return sbPassword.ToString();
+        }
     }
 }

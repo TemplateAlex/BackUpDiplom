@@ -1,0 +1,113 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Send+Flowers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+/*Default settings*/
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/*Create glued footer*/
+.progressBar {
+    height: 5px;
+    position: fixed;
+    width: 0%;
+    box-shadow: 0 0 1.5px rgb(121, 68, 59);
+    background-color: rgb(121, 68, 59);
+    top: 100px;
+}
+
+.main-site__wrapper {
+    min-height: 100vh;
+}
+
+.footer, .header {
+    height: 100px;
+    box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+
+.header {
+    background-color: rgb(255, 255, 255);
+}
+
+.navbar-company {
+    display: none;
+}
+
+.main {
+    flex: 1 1 auto;
+    padding: 10px, 5px, 5px, 5px;
+}
+
+/*Create stilizations for icons*/
+.container__icons {
+    margin-top: 18px;
+}
+
+.social__icons {
+    list-style-type: none;
+    padding: 0;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.social__item {
+    height: 48px;
+    width: 48px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+    transition: 1s;
+    margin-left: 30px;
+}
+
+.icon__facebook {
+    background-image: url("../images/icon_facebook.png");
+}
+
+.icon__twitter {
+    background-image: url("../images/icon_twitter.png");
+}
+
+.icon__instagram {
+    background-image: url("../images/icon_instagram.png");
+}
+
+.twitter:hover {
+    box-shadow: 0 0 20px rgba(0, 172, 238, 0.7);
+    border-color: rgba(0, 172, 238, 0.9);
+}
+
+.facebook:hover {
+    box-shadow: 0 0 20px rgba(59, 89, 152, 0.7);
+    border-color: rgba(59, 89, 152, 0.9);
+}
+
+.instagram:hover {
+    box-shadow: 0 0 20px rgba(193, 53, 132, 0.7);
+    border-color: rgba(193, 53, 132, 0.9);
+}
+
+.icon:hover {
+    animation: slightRotateOfIcon 700ms;
+}
+
+/*Create animations*/
+@keyframes slightRotateOfIcon {
+    50% {
+        transform: rotateZ(10deg);
+    }
+}body {
+}

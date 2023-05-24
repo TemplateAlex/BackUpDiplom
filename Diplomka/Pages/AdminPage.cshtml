@@ -78,6 +78,41 @@
             </table>
         </div>
     </div>
+} else if (Model.TypePage == "Resumes") {
+    <div class="row">
+        <div class="col-6">
+            <h1>Поданные резюме</h1>
+        </div>
+        <div class="col-6">
+            <form method="post">
+                <button type="submit" class="btn btn-outline-dark" asp-page-handler="SendResumes">Отправить email hr-у</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+           <table class="table table-striped table-dark">
+               <thead>
+                   <tr>
+                       <th>#</th>
+                       <th>Имя</th>
+                       <th>Email</th>
+                       <th>О себе</th>
+                       <th>Birthday</th>
+                   </tr>
+               </thead>
+               <tbody>
+                   @for(int i = 0; i < Model.Resumes.Count; i++) {
+                       <tr>
+                           <th>@(i + 1)</th>
+                           <th>@(Model.Resumes[i].AuthorName)</th>
+                           <th>@(Model.Resumes[i].Email)</th>
+                           <th>@(Model.Resumes[i].About)</th>
+                           <th>@(Model.Resumes[i].Birthday.ToShortDateString())</th>
+                       </tr>
+                   }
+               </tbody>
+           </table>
+       </div>
 } else {
     <div>Страница в разработке</div>
 }

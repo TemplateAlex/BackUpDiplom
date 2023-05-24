@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("_ValidationHead")
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <div class="main-site__wrapper d-flex flex-column">
+        @await Html.PartialAsync("_HeaderPartialAboutUs")
+        <div class="progressBar"></div>
+        <main class="main">
+            <div class="main_wrapper">
+                @RenderBody()
+            </div>
+        </main>
+
+        @await Html.PartialAsync("_FooterPartialAboutUs")
+    </div>
+
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

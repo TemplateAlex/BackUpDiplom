@@ -16,6 +16,9 @@ namespace Diplomka.Models
         public DbSet<Users> Users { get; set; }
         public DbSet<ENTMINPredictions> ENTMINPredictions { get; set; }
         public DbSet<ENTAVGPredictions> ENTAVGPredictions { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
+
+        public DbSet<HREmployees> HREmployees { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=DBDiplom; Trusted_Connection=True;");
@@ -40,6 +43,11 @@ namespace Diplomka.Models
             modelBuilder.Entity<EducationProgram>()
                 .HasMany(ep => ep.Subjects)
                 .WithOne(s => s.EducationProgram);
+
+            modelBuilder.Entity<Users>()
+                .HasOne(u => u.HREmployees)
+                .WithOne(hr => hr.Users)
+                .HasForeignKey<HREmployees>(hr => hr.UserId);
         }
     }
 }

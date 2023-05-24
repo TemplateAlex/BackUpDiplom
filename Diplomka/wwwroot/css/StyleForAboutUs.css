@@ -1,0 +1,133 @@
+﻿/*Create section with slider*/
+/*Create screen for slider*/
+
+.slider-screen__wrapper {
+    width: 400px;
+    height: 400px;
+    position: relative;
+    padding-left: 25px;
+    padding-top: 10px;
+    overflow-x: hidden;
+}
+
+/*Create stilization for our cumteam*/
+.slider-item, .slider-item__active {
+    transition: 0.5s;
+}
+
+.slider-item {
+    position: absolute;
+    opacity: 0;
+}
+
+.slider-item__active {
+    opacity: 1;
+}
+
+    /*Create stilization for information in our slider*/
+    .slider-item__active:hover .slider-item__info {
+        opacity: 1;
+        transform: translate(-5%)skew(-15deg);
+    }
+
+.slider-item__info {
+    position: absolute;
+    transform: translate(-10%);
+    z-index: -2;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0 0 2px rgb(0, 0, 0);
+    opacity: 0;
+    transition: 1.5s;
+}
+
+
+    .slider-item__info h3 {
+        position: absolute;
+        transform: rotate(-90deg)translate(35%);
+        top: 50%;
+        right: 0%;
+        font-family: 'Bebas Neue', cursive;
+    }
+
+/*Create stilization for images in slider*/
+
+.slider-item__image {
+    border-radius: 10px;
+    transform: translateX(-10%);
+    position: absolute;
+    width: 250px;
+    height: 300px;
+    z-index: 1;
+}
+
+.first-item {
+    background: url("../images/First.jpg") 50% 50% / cover no-repeat;
+}
+
+.second-item {
+    background: url("../images/Second.jpg") 50% 50% / cover no-repeat;
+}
+
+.third-item {
+    background: url("../images/Third.png") 50% 50% / cover no-repeat;
+}
+
+/*Create section with form*/
+.row-form {
+    position: relative;
+}
+
+.wrapper-form {
+    padding: 10px;
+}
+
+.form-container {
+    width: 80%;
+    padding: 10px;
+    box-shadow: 0 0 2px rgba(16, 16, 16, 0.75);
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+}
+
+/*Change fonts and color for fonts*/
+.h1 {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.h2 {
+    font-family: 'Send Flowers', cursive;
+}
+
+.underline-text__white {
+    color: rgb(255, 255, 255);
+}
+
+/*Create stilization for underlined text*/
+.unline {
+    width: 0px;
+    height: 2px;
+    margin-top: 1px;
+    transition: 1.5s;
+}
+
+.unline__bistre {
+    box-shadow: 0 0 0.5px rgba(61, 43, 31, 1);
+    background-color: rgb(61, 43, 31);
+}
+
+.unline__bisque3 {
+    box-shadow: 0 0 0.5px rgba(205, 183, 158, 1);
+    background-color: rgb(205, 183, 158);
+}
+
+/*Create background for section with form*/
+.background-form {
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: url("../images/background_img.jpg") 50% 50% / cover no-repeat;
+}
