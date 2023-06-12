@@ -19,7 +19,7 @@
 
                     @if (Context.Session.GetString("role") == "Admin")
                     {
-                        <li class="nav-item"><strong class="nav-link mx-2 align-content-center active">(Админ) @(Context.Session.GetString("Login"))</strong></li>
+                        <li class="nav-item"><strong class="nav-link mx-2 align-content-center active">(Админ) @(Context.Session.GetString("Name")) @(Context.Session.GetString("Surname"))</strong></li>
                         <li class="nav-item">
                             <a class="nav-link mx-2 align-content-center active" aria-current="page" asp-page="Index">Главная</a>
                         </li>
@@ -36,7 +36,7 @@
                     } 
                     else if (Context.Session.GetString("role") == "User")
                     {
-                        <li class="nav-item"><strong class="nav-link mx-2 align-content-center active">@(Context.Session.GetString("Login"))</strong></li>
+                        <li class="nav-item"><strong class="nav-link mx-2 align-content-center active">@(Context.Session.GetString("Name")) @(Context.Session.GetString("Surname"))</strong></li>
                         <li class="nav-item">
                             <a class="nav-link mx-2 align-content-center active" aria-current="page" asp-page="Index">Главная</a>
                         </li>
@@ -111,14 +111,18 @@
                 <!-- Grid container -->
                 <div class="container p-3 pb-0">
                     <!-- Section: CTA -->
-                    <section class="">
-                        <p class="d-flex justify-content-center align-items-center">
-                            <span class="me-3">Register for free</span>
-                            <a asp-page="LogAndRegPage" asp-route-namePage="Reg" type="button" class="btn btn-outline-light btn-rounded">
-                                Sign up!
-                            </a>
-                        </p>
-                    </section>
+                    @if (Context.Session.GetString("role") == null)
+                    {
+                        <section class="">
+                            <p class="d-flex justify-content-center align-items-center">
+                                <span class="me-3">Регистрируйся бесплатно</span>
+                                <a asp-page="LogAndRegPage" asp-route-namePage="Reg" type="button" class="btn btn-outline-light btn-rounded">
+                                    Зарегистрироваться!
+                                </a>
+                            </p>
+                        </section>
+                    }
+
                     <!-- Section: CTA -->
                 </div>
                 <!-- Grid container -->
@@ -126,15 +130,15 @@
 
 
 
-                <div class="text-center p-2" style="background-color: #2A2539;">
-                    © 2023 graduation project
+                <div class="text-center p-2" style="background-color: #2A2539; font-size:14px">
+                    © 2023 "AidENT Inc." Дипломный проект
 
                 </div>
 
-                <div class="text-center p-3" style="background-color: #2A2539">
-                    Students: Evolenko Aleksey,
-                    Mendeshev Temirlan,
-                    Trusov Vitaliy
+                <div class="text-center p-3" style="background-color: #2A2539; font-size:14px">
+                    Студенты-разработчики: Еволенко Алексей,
+                    Мендешев Темирлан,
+                    Трусов Виталий
                 </div>
                 <!-- Copyright -->
             </footer>

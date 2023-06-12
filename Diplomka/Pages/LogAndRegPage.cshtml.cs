@@ -57,8 +57,12 @@ namespace Diplomka.Pages
             {
                 string roleId = _context.Users.FirstOrDefault(u => u.AuthenticationId == auth.Id).RoleId;
                 string roleName = _context.Roles.FirstOrDefault(r => r.Id == roleId).RoleName;
+                string username = _context.Authentications.FirstOrDefault(a => a.Id == auth.Id).Name;
+                string usersurname = _context.Authentications.FirstOrDefault(a => a.Id == auth.Id).Surname;
                 HttpContext.Session.SetString("Login", loginLog);
                 HttpContext.Session.SetString("role", roleName);
+                HttpContext.Session.SetString("Name", username);
+                HttpContext.Session.SetString("Surname", usersurname);
                 return RedirectToPage("Index");
             }
             isErrUserLog = true;
